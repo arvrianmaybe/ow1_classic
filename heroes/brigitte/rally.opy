@@ -24,6 +24,13 @@ subroutine launchRally
 subroutine startRally
 subroutine endRally
 
+rule "[brigitte/rally.opy]: brigitte died":
+    @Event playerDied
+    @Hero brigitte
+    @Condition eventPlayer.fake_rally
+
+    eventPlayer.respawn()
+
 rule "[brigitte/rally.opy]: launch Rally":
     @Event eachPlayer
     @Hero brigitte
