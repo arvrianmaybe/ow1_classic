@@ -23,6 +23,7 @@ rule "[lifeweaver/parting_gift.opy]: if parting gift collected remove.":
 
 
 rule "[lifeweaver/parting_gift.opy]: spawn soul parting gift":
+    @Hero lifeweaver
     @Event playerDied
 
     lifeWeaverPartingGift()
@@ -38,7 +39,7 @@ rule "[lifeweaver/parting_gift.opy]: collect parting gift":
     @Condition any([player._gift_collected != true for player in getPlayers(getOppositeTeam(eventPlayer.getTeam()))]) == true
     @Condition eventPlayer.getNormalizedHealth() < 1
     
-    sorted(getDeadPlayers(getOppositeTeam(eventPlayer.getTeam())), lambda player: distance(eventPlayer.getPosition(), player.getPosition()))[0]._gift_collected = true
+    sorted(eventPlayer.isDead(), lambda i: distance(getClosestPlayer(eventPlayer.getPosition(), eventPlayer.getTeam()), i.getPosition()))[0]._gift_collected = true
     heal(eventPlayer, null, LIFEWEAVER_PARTING_GIFT_HEALING)
     wait(0.016, Wait.ABORT_WHEN_FALSE)
     if RULE_CONDITION:
