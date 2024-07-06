@@ -32,7 +32,6 @@ def startRally():
 
     eventPlayer.startScalingBarriers(0.75, false) # Set brig barrier scale
 
-    eventPlayer.setUltEnabled(false)
     eventPlayer.setMoveSpeed(percent(BRIGITTE_RALLY_SPEED_BUFF/OW2_BRIGITTE_RALLY_SPEED_BUFF)) # 30% movement speed buff during rally
 
     setCustomHp(BRIGITTE_RALLY_HEALTH, BRIGITTE_RALLY_ARMOR, 0)
