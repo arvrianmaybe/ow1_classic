@@ -8,7 +8,7 @@ rule "[ramattra/init.opy]: Initialize Ramattra":
     @Hero ramattra
     @Condition eventPlayer._call_init
 
-    setCustomHp(RAMATTRA_HEALTH, RAMATTRA_ARMOR, RAMATTRA_SHIELDS)
+    setCustomHp(RAMATTRA_HEALTH, RAMATTRA_ARMOR, 0)
     setUltCost(RAMATTRA_ULT_COST)
 
     removeTankPassive()
