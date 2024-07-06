@@ -9,7 +9,7 @@ rule "[lifeweaver/init.opy]: Initialize Lifeweaver":
     @Hero lifeweaver
     @Condition eventPlayer._call_init
 
-    setCustomHp(LIFEWEAVER_HEALTH, 0, LIFEWEAVER_SHIELD_HP)
+    setCustomHp(LIFEWEAVER_HEALTH, 0, 0)
     setUltCost(LIFEWEAVER_ULT_COST)
     removeSelfHealing()
     eventPlayer._call_init = false
