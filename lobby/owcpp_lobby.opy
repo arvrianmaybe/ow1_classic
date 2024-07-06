@@ -175,10 +175,6 @@ settings {
                 "enablePassive": false
             },
             "mauga": {
-                "primaryFireIgniteDamage": 0,
-                "primaryFireIgniteDuration": 0,
-                "primaryFireIgniteRate": 0,
-                "health%": percent(MAUGA_CAGE_FIGHT_HEALTH/OW2_MAUGA_CAGE_FIGHT_HEALTH), # for cage fight
                 "ultGen%": percent(MAUGA_ULT_COST/OW2_MAUGA_ULT_COST)
             },
             "moira": {
@@ -213,6 +209,7 @@ settings {
                 "ultGen%": percent(OW2_ROADHOG_ULT_COST/ROADHOG_ULT_COST)
             },
             "sigma": {
+                "secondaryFireCooldown%": 0,
                 "secondaryFireRechargeRate%": percent(SIGMA_BARRIER_REGEN/OW2_SIGMA_BARRIER_REGEN),
                 "health%": percent(SIGMA_BARRIER_HEALTH/OW2_SIGMA_BARRIER_HEALTH), # for barrier
                 "ultGen%": percent(OW2_SIGMA_ULT_COST/SIGMA_ULT_COST),
@@ -220,7 +217,7 @@ settings {
             "ramattra": {
                 "health%": percent(RAMATTRA_BARRIER_HEALTH/OW2_RAMATTRA_BARRIER_HEALTH), # for barrier
                 "ability1Cooldown%": percent(RAMATTRA_NEMESIS_COOLDOWN/OW2_RAMATTRA_NEMESIS_COOLDOWN),
-                # "enableInfiniteUlt": true, # for old ult
+                "enableInfiniteUlt": true, # for old ult
                 "ultGen%": percent(RAMATTRA_ULT_COST/OW2_RAMATTRA_ULT_COST),
             },
             "soldier": {
@@ -272,37 +269,46 @@ settings {
              "ultGen%": percent(OW2_ZENYATTA_ULT_COST/ZENYATTA_ULT_COST)
              },
              "enabledHeroes": [
-                 "ana",
-                 "ashe",
-                 "baptiste",
-                 "bastion",
-                 "brigitte",
-                 "mccree",
-                 "doomfist",
-                 "dva",
-                 "genji",
-                 "hanzo",
-                 "junkrat",
-                 "kiriko",
-                 "lucio",
-                 "mei",
-                 "mercy",
-                 #"moira",
-                 "orisa",
-                 "pharah",
-                 "reaper",
-                 "reinhardt",
-                 "roadhog",
-                 #"sigma",
-                 "soldier",
-                 "sombra",
-                 "symmetra",
-                 "torbjorn",
-                 "tracer",
-                 "widowmaker",
-                 "winston",
-                 "zarya",
-                 "zenyatta",
+                "ana",
+                "ashe",
+                "baptiste",
+                "bastion",
+                "brigitte",
+                "mccree",
+                "doomfist",
+                "dva",
+                "echo",
+                "genji",
+                "hanzo",
+                "illari",
+                "junkerQueen",
+                "junkrat",
+                "kiriko",
+                "lifeweaver",
+                "lucio",
+                "mauga",
+                "mei",
+                "mercy",
+                "moira",
+                "orisa",
+                "pharah",
+                "ramattra",
+                "reaper",
+                "reinhardt",
+                "roadhog",
+                "sigma",
+                "sojourn",
+                "soldier",
+                "sombra",
+                "symmetra",
+                "torbjorn",
+                "tracer",
+                "venture",
+                "widowmaker",
+                "winston",
+                "hammond",
+                "zarya",
+                "zenyatta",
              ]
          }
      }
