@@ -4,13 +4,10 @@
 #!include "heroes/ana/nade.opy"
 #!include "heroes/ana/boost.opy"
 
-#!include "heroes/brigitte/rally.opy"
-
 rule "[ana/init.opy]: Initialize Ana":
     @Event eachPlayer
     @Hero ana
     @Condition eventPlayer._call_init
-    @Condition not eventPlayer._is_using_fake_rally # guards against initialization when brig rally
 
     setCustomHp(ANA_HEALTH, 0, 0)
     setUltCost(ANA_ULT_COST)
