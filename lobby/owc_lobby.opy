@@ -53,11 +53,18 @@ settings {
     },
     "gamemodes": {
         "assault": {
+            "disabledMaps": [
+                "horizonLunarColony",
+                "paris",
+                "hanamuraWinter",
+                "samoa"
+        ],
             "enableCompetitiveRules": true
         },
         "control": {
             "disabledMaps": [
-                "lijiangTowerLny"
+                "lijiangTowerLny",
+                "samoa"
             ],
             "enableCompetitiveRules": true
         },
@@ -69,7 +76,8 @@ settings {
                 "blizzWorldWinter",
                 "eichenwaldeHalloween",
                 "hollywoodHalloween",
-                "kingsRowWinter"
+                "kingsRowWinter",
+                "midtown"
             ],
             "enableCompetitiveRules": true
         },
