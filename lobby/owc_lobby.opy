@@ -69,10 +69,14 @@ settings {
             "enableCompetitiveRules": true
         },
         "escort": {
-            "enableCompetitiveRules": true
+            "disabledMaps": [
+                "circuitRoyal",
+                "shambaliMonastery"
+            ]
         },
         "hybrid": {
             "disabledMaps": [
+                "paraiso",
                 "blizzWorldWinter",
                 "eichenwaldeHalloween",
                 "hollywoodHalloween",
