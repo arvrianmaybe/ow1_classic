@@ -11,5 +11,5 @@ rule "[lifeweaver/init.opy]: Initialize Lifeweaver":
 
     setCustomHp(LIFEWEAVER_HEALTH, 0, 0)
     setUltCost(LIFEWEAVER_ULT_COST)
-    removeSelfHealing()
+    removePassiveHealing() # Still automatically self heals
     eventPlayer._call_init = false
