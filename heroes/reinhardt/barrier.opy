@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[reinhardt/fusion_driver.opy]: Slow down Reinhardt when using barrier":
+rule "[reinhardt/barrier.opy]: Slow down Reinhardt when using barrier":
     @Event eachPlayer
     @Hero reinhardt
     @Condition eventPlayer.isFiringSecondaryFire()
