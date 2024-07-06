@@ -15,7 +15,6 @@ rule "[brigitte/init.opy]: Initialize Brigitte":
     @Event eachPlayer
     @Hero brigitte
     @Condition eventPlayer._call_init
-    @Condition not eventPlayer._is_using_fake_rally # guards against initialization when brig railly
 
     setCustomHp(BRIGITTE_HEALTH, BRIGITTE_ARMOR, 0)
     setUltCost(BRIGITTE_ULT_COST)
@@ -23,7 +22,6 @@ rule "[brigitte/init.opy]: Initialize Brigitte":
     setBaseDamage(eventPlayer, BRIGITTE_FLAIL_DAMAGE/OW2_BRIGITTE_FLAIL_DAMAGE)
 
     removeSelfHealing()
-    eventPlayer._is_using_fake_rally = false
     eventPlayer._call_init = false
 
 rule "[brigitte/init.opy]: Clean up brigitte":
