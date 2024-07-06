@@ -29,7 +29,14 @@ rule "[brigitte/rally.opy]: brigitte died":
     @Hero brigitte
     @Condition eventPlayer.fake_rally
 
+    endRally()
     eventPlayer.respawn()
+    eventPlayer.startForcingHero(Hero.ANA)
+    eventPlayer.stopForcingCurrentHero()
+    eventPlayer.startForcingHero(Hero.BRIGITTE)
+    eventPlayer.stopForcingCurrentHero()
+    kill(eventPlayer,null)
+    eventPlayer._call_init = true # reinit player
 
 rule "[brigitte/rally.opy]: launch Rally":
     @Event eachPlayer
