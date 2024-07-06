@@ -120,6 +120,7 @@ settings {
                 "ultGen%": percent(OW2_GENJI_ULT_COST/GENJI_ULT_COST)
             },
             "hanzo": {
+                "enableAbility3": false,
                 "ability2Cooldown%": percent(HANZO_STORM_COOLDOWN/OW2_HANZO_STORM_COOLDOWN),
                 "ultGen%": percent(OW2_HANZO_ULT_COST/HANZO_ULT_COST)
             },
