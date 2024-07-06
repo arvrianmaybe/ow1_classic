@@ -15,7 +15,7 @@ subroutine fireScatterArrow
 
 
 def fireScatterArrow():
-    @Name "[Scatter Arrow] Fire scatter projectile"
+    @Name "[hanzo/scatter.opy]:  fireScatterArrow()"
     
     waitUntil(raycast(eventPlayer._scatter_position + (eventPlayer._scatter_velocity * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)) + ((0.5 * 9.82 * Vector.DOWN * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)) * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)), eventPlayer._scatter_position + (eventPlayer._scatter_velocity * (getTotalTimeElapsed() - eventPlayer._scatter_time)) + ((0.5 * 9.82 * Vector.DOWN * (getTotalTimeElapsed() - eventPlayer._scatter_time)) * (getTotalTimeElapsed() - eventPlayer._scatter_time)), getPlayers(getOppositeTeam(eventPlayer.getTeam())), getPlayers(eventPlayer.getTeam()), true).getHitPosition() != eventPlayer._scatter_position + (eventPlayer._scatter_velocity * (getTotalTimeElapsed() - eventPlayer._scatter_time)) + ((0.5 * 9.82 * Vector.DOWN * (getTotalTimeElapsed() - eventPlayer._scatter_time)) * (getTotalTimeElapsed() - eventPlayer._scatter_time)), 100)
     eventPlayer.extend_player_collection[0] = raycast(eventPlayer._scatter_position + (eventPlayer._scatter_velocity * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)) + ((0.5 * 9.82 * Vector.DOWN * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)) * (getTotalTimeElapsed() - eventPlayer._scatter_time - 0.032)), eventPlayer._scatter_position + (eventPlayer._scatter_velocity * (getTotalTimeElapsed() - eventPlayer._scatter_time)) + ((0.5 * 9.82 * Vector.DOWN * (getTotalTimeElapsed() - eventPlayer._scatter_time)) * (getTotalTimeElapsed() - eventPlayer._scatter_time)), getPlayers(getOppositeTeam(eventPlayer.getTeam())), getPlayers(eventPlayer.getTeam()), true).getHitPosition()
@@ -29,7 +29,7 @@ def fireScatterArrow():
         eventPlayer.extend_player_collection[3] += 1
 
 
-rule "[Scatter Arrow] Detect firing state":
+rule "[hanzo/scatter.opy]: fire scatter arrow":
     @Event eachPlayer
     @Hero hanzo
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0
