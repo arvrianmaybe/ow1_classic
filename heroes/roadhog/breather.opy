@@ -16,7 +16,7 @@ rule "[roadhog/breather.opy]: OW1 Take a Breather":
 
     # activate ability
     eventPlayer._is_using_breather = true
-    eventPlayer.setStatusEffect(null, Status.ROOTED, 2)
+    eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
     eventPlayer.setAbility2Enabled(false)
     eventPlayer.setDamageReceived(percent((1-ROADHOG_BREATHER_DAMAGE_REDUCTION)/(1-OW2_ROADHOG_BREATHER_DAMAGE_REDUCTION))) # reduce damage intake
     eventPlayer.allowButton(Button.SECONDARY_FIRE)
@@ -26,6 +26,7 @@ rule "[roadhog/breather.opy]: OW1 Take a Breather":
     eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
     eventPlayer.setDamageReceived(100) # reset damage intake
+    eventPlayer.clearStatusEffect(Status.ROOTED)
     wait(ROADHOG_BREATHER_RECOVERY_TIME)
     eventPlayer._is_using_breather = false
 
