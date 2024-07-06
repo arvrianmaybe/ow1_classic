@@ -11,5 +11,3 @@ rule "[junkrat/mine.opy]: Only one mine":
     wait(JUNKRAT_CONCUSSION_MINE_COOLDOWN)
     eventPlayer.setAbilityCharge(Button.ABILITY_1, 2)
     eventPlayer.allowButton(Button.ABILITY_1)
-    if RULE_CONDITION:
-        goto RULE_START
