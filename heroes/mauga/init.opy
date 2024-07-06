@@ -9,5 +9,5 @@ rule "[mauga/init.opy]: Initialize Mauga":
     setUltCost(MAUGA_ULT_COST)
 
     removeTankPassive()
-    removeSelfHealing()
+    removePassiveHealing()
     eventPlayer._call_init = false
