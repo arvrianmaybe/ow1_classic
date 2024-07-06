@@ -48,6 +48,7 @@ def endRally():
 
     eventPlayer._brig_hp = eventPlayer.getHealthOfType(Health.NORMAL)
     eventPlayer._brig_armor = eventPlayer.getHealthOfType(Health.ARMOR)
+    eventPlayer.setMaxHealth(100) # Keep this on for correct regenaration https://us.forums.blizzard.com/en/overwatch/t/shield-health-recharge/588713
     setCustomHp(BRIGITTE_HEALTH, BRIGITTE_ARMOR, 0)
     eventPlayer.setHealth(min(BRIGITTE_HEALTH, eventPlayer._brig_hp) + eventPlayer._brig_armor)
 
