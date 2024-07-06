@@ -26,11 +26,12 @@ playervar barrier_entity_positions
 playervar barrier_entity_colors
 playervar barrier_entity_ids
 
-playervar barrier_active
+playervar barrier_start_pvar
+#!defineMember barrier_active barrier_start_pvar [0]
 playervar barrier_uptime
-playervar barrier_hp
-playervar barrier_hp_hud_id
-playervar orisa_barrier_hit_positions
+#!defineMember barrier_hp barrier_start_pvar [1]
+#!defineMember barrier_hp_hud_id barrier_start_pvar [2] 
+#!defineMember orisa_barrier_hit_positions barrier_start_pvar [3] 
 
 playervar barrier_damage_block_id
 playervar barrier_all_enemies
