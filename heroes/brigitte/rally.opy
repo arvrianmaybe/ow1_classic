@@ -3,13 +3,10 @@
 playervar rally_hot_id
 
 playervar rally_pvar
-#!defineMember _is_using_fake_rally rally_pvar[0]
+#!defineMember _brig_detect_rally rally_pvar [0]
 #!defineMember _brig_hp rally_pvar [1]
 #!defineMember _brig_armor rally_pvar [2]
-#!defineMember _repair_cooldown rally_pvar [3]
-#!defineMember _whip_cooldown rally_pvar [4]
-#!defineMember _bash_cooldown rally_pvar [5]
-#!defineMember _brig_barrier_hp rally_pvar [6]
+#!defineMember _brig_barrier_hp rally_pvar [3]
 
 subroutine startRally
 subroutine endRally
@@ -20,12 +17,13 @@ rule "[brigitte/rally.opy]: rally start":
     @Condition eventPlayer.isUsingUltimate()
 
     startRally()
-    wait(BRIGITTE_RALLY_DURATION)
+    waitUntil(not eventPlayer.isUsingUltimate(), BRIGITTE_RALLY_DURATION)
     endRally()
 
 def startRally():
     @Name "[brigitte/rally.opy]: startRally()"
 
+    eventPlayer._brig_detect_rally = true
 
     eventPlayer._brig_barrier_hp = 0.1
     eventPlayer.setMaxHealth(eventPlayer._brig_barrier_hp) # 604 is the least amount i could do, sorry i tried.
@@ -54,3 +52,12 @@ def endRally():
 
     eventPlayer.setMoveSpeed(100)
     stopHoT(eventPlayer.rally_hot_id)
+
+    eventPlayer._brig_detect_rally = false
+
+rule "[brigitte/rally.opy]: Reset rally if player died":
+    @Event playerDied
+    @Condition eventPlayer._brig_detect_rally
+
+    waitUntil(eventPlayer.isAlive(), Math.INFINITY)
+    endRally()
