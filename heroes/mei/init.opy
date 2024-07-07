@@ -1,6 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "heroes/mei/blaster.opy"
+#!include "heroes/mei/cyro_freeze.opy"
 
 rule "[mei/init.opy]: Initialize Mei":
     @Event eachPlayer
