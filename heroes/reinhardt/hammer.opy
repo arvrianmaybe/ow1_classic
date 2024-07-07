@@ -20,3 +20,12 @@ rule "[reinhardt/hammer.opy]: Set move penalty for reinhardt":
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-REINHARDT_HAMMER_MOVE_PENALTY))
     waitUntil((not eventPlayer.isFiringPrimaryFire()), Math.INFINITY)
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-REINHARDT_HAMMER_MOVE_PENALTY))
+
+rule "[reinhardt/hammer.opy]: Set move penalty for reinhardt melee":
+    @Event eachPlayer
+    @Hero reinhardt
+    @Condition eventPlayer.isMeleeing()
+
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-REINHARDT_HAMMER_MOVE_PENALTY))
+    waitUntil((not eventPlayer.isMeleeing()), Math.INFINITY)
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-REINHARDT_HAMMER_MOVE_PENALTY))
