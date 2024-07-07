@@ -23,12 +23,12 @@ playervar repair_pvar
     eventPlayer._self_repair_ring_gui = null
 
 playervar self_repair_time_left
-#!defineMember self_repair_instance repair_pvar[3]
+#!defineMember self_repair_instance repair_pvar[0]
 
-#!defineMember _self_repair_resource_gui repair_pvar[4]
-#!defineMember _self_repair_sparkles_upper_gui repair_pvar[5]
-#!defineMember _self_repair_sparkles_lower_gui repair_pvar[6]
-#!defineMember _self_repair_ring_gui repair_pvar[7]
+#!defineMember _self_repair_resource_gui repair_pvar[1]
+#!defineMember _self_repair_sparkles_upper_gui repair_pvar[2]
+#!defineMember _self_repair_sparkles_lower_gui repair_pvar[3]
+#!defineMember _self_repair_ring_gui repair_pvar[4]
 
 
 rule "[bastion/repair.opy]: Activate self-repair":
@@ -87,7 +87,8 @@ rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
 rule "[bastion/repair.opy]: Deactivate self-repair":
     @Event eachPlayer
     @Hero bastion
-    @Condition not isUsingSelfRepair(eventPlayer)
+    @Condition isPressingSelfRepairButton(eventPlayer) or eventPlayer.isFiringPrimaryFire() or not eventPlayer.hasStatusEffect(Status.ROOTED)
+
 
     stopHoT(eventPlayer.self_repair_instance) # Stop healing
     eventPlayer.self_repair_instance = null
