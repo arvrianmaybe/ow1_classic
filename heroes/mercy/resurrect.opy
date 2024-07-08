@@ -1,21 +1,23 @@
-#!mainFile "../../main.opy"
+#!mainFile "../../dev_main.opy"
 
 playervar resurrect_pvar
 
-#!defineMember count_dead_allies resurrect_pvar[0]
-#!defineMember res_allies resurrect_pvar[1]
-#!defineMember dead_allies resurrect_pvar[2]
-#!defineMember res_hud_icon_1 resurrect_pvar[3]
-#!defineMember res_hud_icon_2 resurrect_pvar[4]
+#!defineMember _mercy_hud_text resurrect_pvar [0]
+#!defineMember _count_dead_allies resurrect_pvar[1]
+#!defineMember _res_allies resurrect_pvar[2]
+#!defineMember _dead_allies resurrect_pvar[3]
 
 #!define MERCY_ULT_VOICELINE_DUR 1.635
 #!define MERCY_MAS_RES_DURATION 0.65
 #!define RES_WAIT 2.25
 
+#!define hideMercyResHud()\
+    destroyInWorldText(eventPlayer._mercy_hud_text)\
+    eventPlayer._mercy_hud_text = null
+
 playervar is_using_res
 
 playervar mercy_res_id
-
 
 subroutine startMassRes
 subroutine stopMassRes
@@ -27,7 +29,7 @@ rule "[mercy/resurrect.opy]: Store dead allies in an array":
     @Condition not eventPlayer.isInSpawnRoom()
     
     do:
-        eventPlayer.dead_allies = [player for player in getPlayersInRadius(worldVector(vect(0, 0, 0), eventPlayer, Transform.ROTATION_AND_TRANSLATION), 15, eventPlayer.getTeam(), LosCheck.OFF) if player.isDead()]
+        eventPlayer._dead_allies = [player for player in getPlayersInRadius(worldVector(vect(0, 0, 0), eventPlayer, Transform.ROTATION_AND_TRANSLATION), MERCY_RESURRECT_RADIUS, eventPlayer.getTeam(), LosCheck.OFF) if player.isDead()]
         wait()
     while RULE_CONDITION
 
@@ -71,14 +73,14 @@ rule "[mercy/resurrect.opy]: Trigger res":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
-    @Condition len(eventPlayer.dead_allies) > 0
+    @Condition len(eventPlayer._dead_allies) > 0
     @Condition not isCCd(eventPlayer)
     @Condition not eventPlayer.isDead()
     
     startMassRes()
-    eventPlayer.count_dead_allies = 0
-    eventPlayer.dead_allies.res_allies = true
-    eventPlayer.dead_allies = []
+    eventPlayer._count_dead_allies = 0
+    eventPlayer._dead_allies._res_allies = true
+    eventPlayer._dead_allies = []
     waitUntil(not eventPlayer.isUsingAbility1(), 5)
     eventPlayer.setAbility1Enabled(false)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
@@ -87,36 +89,35 @@ rule "[mercy/resurrect.opy]: Trigger res":
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     stopMassRes()
 
-
-
 rule "[mercy/resurrect.opy]: HUD counter":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.getUltCharge() >= 100
-    @Condition len(eventPlayer.dead_allies) != eventPlayer.count_dead_allies
+    @Condition len(eventPlayer._dead_allies) != eventPlayer._count_dead_allies
     @Condition not eventPlayer.isDead()
     @Condition not eventPlayer.isInSpawnRoom()
     
     do:
-        eventPlayer.count_dead_allies = len(eventPlayer.dead_allies)
-        if not eventPlayer.res_hud_icon_1:
-            hudSubtext(eventPlayer if len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= 15]) > 0 else null, " \r\n \r\n \r\n \r\n ", HudPosition.TOP, 1, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-            eventPlayer.res_hud_icon_1 = getLastCreatedText()
-        if not eventPlayer.res_hud_icon_2:
-            hudSubtext(eventPlayer if len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= 15]) > 0 else null, "       /  \\ \r\n     /      \\ \r\n   /  {1}×{0}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= 15]), iconString(Icon.SKULL)), HudPosition.TOP, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-            eventPlayer.res_hud_icon_2 = getLastCreatedText()
-        waitUntil(not eventPlayer.dead_allies or eventPlayer.getUltCharge() < 100, 5)
-        destroyHudText(eventPlayer.res_hud_icon_1)
-        eventPlayer.res_hud_icon_1 = null
-        destroyHudText(eventPlayer.res_hud_icon_2)
-        eventPlayer.res_hud_icon_2 = null
+        eventPlayer._count_dead_allies = len(eventPlayer._dead_allies)
+        if eventPlayer._mercy_hud_text == null:
+            createInWorldText(eventPlayer, "       /  \\ \r\n     /      \\ \r\n   /  {0}×{1}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= MERCY_RESURRECT_RADIUS]), iconString(Icon.SKULL)),
+            updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-1.65 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+            verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+            2.5, 
+            Clip.NONE, 
+            WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
+            Color.YELLOW, 
+            SpecVisibility.DEFAULT) 
+        eventPlayer._mercy_hud_text = getLastCreatedText()
+        waitUntil(not eventPlayer._dead_allies or eventPlayer.getUltCharge() < 100, 5)
+        hideMercyResHud()
         wait()
     while RULE_CONDITION
 
 
 rule "[mercy/resurrect.opy]: Resurrected player":
     @Event eachPlayer
-    @Condition eventPlayer.res_allies
+    @Condition eventPlayer._res_allies
     
     eventPlayer.disableRespawn()
     eventPlayer.startCamera(eventPlayer.getEyePosition() + vect(0, 2, 0) + eventPlayer.getFacingDirection() * -2, eventPlayer, 0)
@@ -130,7 +131,7 @@ rule "[mercy/resurrect.opy]: Resurrected player":
     playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
     wait(RES_WAIT)
     eventPlayer.stopCamera()
-    eventPlayer.res_allies = false
+    eventPlayer._res_allies = false
     eventPlayer.enableRespawn()
 
 
@@ -141,10 +142,7 @@ rule "[mercy/resurrect.opy]: Fix bug where rez HUD applied after death":
     @Condition eventPlayer.isDead()
     @Condition not eventPlayer.isInSpawnRoom()
     
-    destroyHudText(eventPlayer.res_hud_icon_1)
-    eventPlayer.res_hud_icon_1 = null
-    destroyHudText(eventPlayer.res_hud_icon_2)
-    eventPlayer.res_hud_icon_2 = null
+    hideMercyResHud()
     wait(0.064)
     if eventPlayer.isDead():
         goto RULE_START

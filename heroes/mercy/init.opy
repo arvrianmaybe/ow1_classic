@@ -20,3 +20,10 @@ rule "[mercy/init.opy]: Initialize Mercy":
     eventPlayer.is_slingshotting = false
 
     eventPlayer._call_init = false
+
+rule "[mercy/init.opy]: Clean up Mercy":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.MERCY
+
+    waitUntil(eventPlayer.getCurrentHero() != Hero.MERCY, Math.INFINITY)
+    hideMercyResHud()
