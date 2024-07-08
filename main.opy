@@ -33,6 +33,7 @@
 
 # Hero specific logic
 #!include "heroes/bastion/init.opy"
+#!include "heroes/cassidy/init.opy"
 #!include "heroes/dva/init.opy"
 #!include "heroes/genji/init.opy"
 #!include "heroes/hanzo/init.opy"
@@ -40,7 +41,6 @@
 #!include "heroes/lucio/init.opy"
 #!include "heroes/mei/init.opy"
 #!include "heroes/mercy/init.opy"
-#!include "heroes/mccree/init.opy"
 #!include "heroes/pharah/init.opy"  
 #!include "heroes/roadhog/init.opy"
 #!include "heroes/reaper/init.opy"
