@@ -1,7 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "heroes/hanzo/scatter.opy"
-
+#!include "heroes/hanzo/dragon.opy"
 
 rule "[hanzo/init.opy]: Initialize Hanzo":
     @Event eachPlayer
