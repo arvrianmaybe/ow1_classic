@@ -15,8 +15,6 @@ playervar resurrect_pvar
     destroyInWorldText(eventPlayer._mercy_hud_text)\
     eventPlayer._mercy_hud_text = null
 
-playervar is_using_res
-
 playervar mercy_res_id
 
 subroutine startMassRes
