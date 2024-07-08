@@ -40,11 +40,9 @@ def startMassRes():
     #eventPlayer.communicate(Comms.VOICE_LINE_UP) # Play ultimate voice line
 
     # mass res sound eeffects
-    playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.YELLOW, eventPlayer, Math.INFINITY)
-    playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.YELLOW, eventPlayer, Math.INFINITY)
-    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, Math.INFINITY)
-
-    createEffect(getAllPlayers(), Effect.SPARKLES_SOUND, Color.WHITE, eventPlayer, Math.INFINITY, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+    playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.YELLOW, eventPlayer, 5)
+    playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.YELLOW, eventPlayer, 5)
+    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
 
     # Res Player Effects
     if (eventPlayer.mercy_res_id == null):
@@ -63,7 +61,7 @@ def stopMassRes():
 
     # Gone Effects
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 15)
-    playEffect(getAllPlayers(), DynamicEffect.BAD_EXPLOSION, Color.YELLOW, eventPlayer, Math.INFINITY)
+    playEffect(getAllPlayers(), DynamicEffect.BAD_EXPLOSION, Color.YELLOW, eventPlayer, 15)
 
     # Clear res effects
     destroyEffect(eventPlayer.mercy_res_id)
@@ -81,7 +79,7 @@ rule "[mercy/resurrect.opy]: Trigger res":
     eventPlayer.count_dead_allies = 0
     eventPlayer.dead_allies.res_allies = true
     eventPlayer.dead_allies = []
-    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
+    waitUntil(not eventPlayer.isUsingAbility1(), 5)
     eventPlayer.setAbility1Enabled(false)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     wait(MERCY_MAS_RES_DURATION)
@@ -107,7 +105,7 @@ rule "[mercy/resurrect.opy]: HUD counter":
         if not eventPlayer.res_hud_icon_2:
             hudSubtext(eventPlayer if len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= 15]) > 0 else null, "       /  \\ \r\n     /      \\ \r\n   /  {1}×{0}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= 15]), iconString(Icon.SKULL)), HudPosition.TOP, 5, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
             eventPlayer.res_hud_icon_2 = getLastCreatedText()
-        waitUntil(not eventPlayer.dead_allies or eventPlayer.getUltCharge() < 100, Math.INFINITY)
+        waitUntil(not eventPlayer.dead_allies or eventPlayer.getUltCharge() < 100, 5)
         destroyHudText(eventPlayer.res_hud_icon_1)
         eventPlayer.res_hud_icon_1 = null
         destroyHudText(eventPlayer.res_hud_icon_2)
@@ -125,14 +123,11 @@ rule "[mercy/resurrect.opy]: Resurrected player":
     eventPlayer.resurrect()
     wait()
     eventPlayer.startCamera(eventPlayer.getEyePosition(), eventPlayer.getPosition() + eventPlayer.getFacingDirection() * 100, 3)
-    kill(eventPlayer, getPlayersOnHero(Hero.MERCY, eventPlayer.getTeam()))
     wait()
-    eventPlayer.resurrect()
-    heal(eventPlayer, null, Math.INFINITY)
     eventPlayer.setStatusEffect(null, Status.ROOTED, RES_WAIT)
     eventPlayer.setStatusEffect(null, Status.PHASED_OUT, RES_WAIT)
     eventPlayer.setStatusEffect(null, Status.BURNING, RES_WAIT)
-    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, Math.INFINITY)
+    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
     wait(RES_WAIT)
     eventPlayer.stopCamera()
     eventPlayer.res_allies = false
