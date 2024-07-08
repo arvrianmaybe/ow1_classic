@@ -94,7 +94,7 @@ settings {
                 "ability2Cooldown%": percent(BRIGITTE_REPAIR_PACK_COOLDOWN/OW2_BRIGITTE_REPAIR_PACK_COOLDOWN),
                 "ultGen%": percent(OW2_BRIGITTE_ULT_COST/BRIGITTE_ULT_COST)
             },
-            "mccree": {
+            "cassidy": {
                 "ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
                 "ultGen%": percent(OW2_MCCREE_ULT_COST/MCCREE_ULT_COST)
             },
@@ -258,7 +258,7 @@ settings {
                  "baptiste",
                  "bastion",
                  "brigitte",
-                 "mccree",
+                 "cassidy",
                  "doomfist",
                  "dva",
                  "echo",
