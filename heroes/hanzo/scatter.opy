@@ -33,7 +33,7 @@ rule "[hanzo/scatter.opy]: fire scatter arrow":
     @Hero hanzo
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0
     @Condition not isCCd(eventPlayer)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == true
+    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
     
     waitUntil(eventPlayer.isUsingAbility2(), 0.3)
     if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
@@ -66,3 +66,12 @@ rule "[hanzo/scatter.opy]: remove scatter arrow critical hit":
 
     heal(victim, null, eventDamage)
     damage(victim, eventPlayer, HANZO_SCATTER_ARROW_DAMAGE)
+
+rule "[hanzo/scatter.opy]: Slow down hanzo when using scatter":
+    @Event eachPlayer
+    @Hero hanzo
+    @Condition eventPlayer.isUsingAbility2()
+
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-HANZO_SCATTER_ARROW_MOVE_PENALTY))
+    waitUntil((not eventPlayer.isUsingAbility2()), Math.INFINITY)
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-HANZO_SCATTER_ARROW_MOVE_PENALTY))
