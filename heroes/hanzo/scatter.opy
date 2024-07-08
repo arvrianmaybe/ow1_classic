@@ -7,7 +7,6 @@ playervar scatter_pvar
 #!defineMember _scatter_time scatter_pvar [0]
 #!defineMember _scatter_velocity scatter_pvar [1] 
 #!defineMember _scatter_position scatter_pvar [2]
-playervar scatter_time
 playervar extend_player_collection 
 
 subroutine fireScatterArrow 
