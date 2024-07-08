@@ -2,6 +2,7 @@
 
 #!include "heroes/pharah/rocket_launcher.opy"
 #!include "heroes/pharah/concussive.opy"
+#!include "heroes/pharah/barrage.opy"
 
 rule "[pharah/init.opy]: Initialize Pharah":
     @Event eachPlayer
