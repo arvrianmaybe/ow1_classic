@@ -95,7 +95,7 @@ settings {
                 "ultGen%": percent(OW2_BRIGITTE_ULT_COST/BRIGITTE_ULT_COST)
             },
             "mccree": {
-                #"ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
+                "ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
                 "ultGen%": percent(OW2_MCCREE_ULT_COST/MCCREE_ULT_COST)
             },
             "doomfist": {
@@ -116,7 +116,7 @@ settings {
                 "ultGen%": percent(OW2_ECHO_ULT_COST/ECHO_ULT_COST)
             },
             "genji": {
-                "ultDuration%": percent(OW2_GENJI_BLADE_DURATION/GENJI_BLADE_DURATION),
+                "ultDuration%": 120,
                 "ultGen%": percent(OW2_GENJI_ULT_COST/GENJI_ULT_COST)
             },
             "hanzo": {
@@ -164,7 +164,7 @@ settings {
             },
             "moira": {
                 "ultGen%": percent(OW2_MOIRA_ULT_COST/MOIRA_ULT_COST),
-                "ultDuration%": percent(MOIRA_ULTIMATE_DURATION/OW2_MOIRA_ULT_DURATION),
+                "ultDuration%": percent(MOIRA_ULTIMATE_DURATION/OW2_MOIRA_ULT_DURATION),    
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/MOIRA_HEAL_GRASP_AMMO_USAGE)*(MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
             "orisa": {

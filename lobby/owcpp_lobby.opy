@@ -111,7 +111,7 @@ settings {
                 "ultGen%": percent(OW2_BRIGITTE_ULT_COST/BRIGITTE_ULT_COST)
             },
             "mccree": {
-                #"ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
+                "ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
                 "ultGen%": percent(OW2_MCCREE_ULT_COST/MCCREE_ULT_COST)
             },
             "doomfist": {
@@ -132,10 +132,11 @@ settings {
                 "ultGen%": percent(OW2_ECHO_ULT_COST/ECHO_ULT_COST)
             },
             "genji": {
-                "ultDuration%": percent(GENJI_BLADE_DURATION/OW2_GENJI_BLADE_DURATION),
+                "ultDuration%": 120,
                 "ultGen%": percent(OW2_GENJI_ULT_COST/GENJI_ULT_COST)
             },
             "hanzo": {
+                "enableAbility3": false,
                 "ability2Cooldown%": percent(HANZO_STORM_COOLDOWN/OW2_HANZO_STORM_COOLDOWN),
                 "ultGen%": percent(OW2_HANZO_ULT_COST/HANZO_ULT_COST)
             },
