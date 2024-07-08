@@ -64,6 +64,9 @@ settings {
         "escort": {
             "enableCompetitiveRules": true
         },
+        "push": {
+            "enableCompetitiveRules": true
+        },
         "hybrid": {
             "disabledMaps": [
                 "blizzWorldWinter",
