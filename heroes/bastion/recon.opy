@@ -1,5 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "heroes/bastion/sentry.opy"
+
 rule "[bastion/recon.opy]: Initialize recon mode":
     @Event eachPlayer
     @Hero bastion
@@ -18,3 +20,5 @@ rule "[bastion/recon.opy]: Initialize recon mode":
 
     eventPlayer.clearStatusEffect(Status.ROOTED)
     eventPlayer.setKnockbackReceived(100)
+
+    stopFiring()
