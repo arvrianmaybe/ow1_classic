@@ -1,5 +1,13 @@
 #!mainFile "../../dev_main.opy"
 
+def startFiring():
+    @Name "startFiring()"
+
+    if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE): 
+        eventPlayer.startForcingButton(Button.PRIMARY_FIRE) 
+        waitUntil(not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), Math.INFINITY) 
+        eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
+
 #!defineMember bastionCastTime() \
 if eventPlayer.isUsingAbility1(): \
     eventPlayer.disallowButton(Button.ABILITY_1) \
@@ -71,11 +79,3 @@ rule "[bastion/sentry.opy]: Stop using sentry if player dealt cc":
     
     waitUntil(not isCCd(eventPlayer), Math.INFINITY)
     eventPlayer.forceButtonPress(Button.ABILITY_1)
-
-def startFiring():
-    @Name "startFiring()" # No name include cause this for global
-
-    if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE): 
-        eventPlayer.startForcingButton(Button.PRIMARY_FIRE) 
-        waitUntil(not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), Math.INFINITY) 
-        eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
