@@ -5,25 +5,14 @@ rule "[soldier/pulse_rifle.opy]: Deal OW1 soldier primary fire damage":
     @Hero soldier
     @Condition eventAbility == Button.PRIMARY_FIRE
 
-    heal(victim,null, eventDamage)
-    # damage(victim, attacker, eventDamage*(SOLDIER_HEAVY_PULSE_RIFLE_DAMAGE/OW2_SOLDIER_HEAVY_PULSE_RIFLE_DAMAGE)-eventDamage)
-
-rule "[solder/pulse_rifle.opy]: Set critical hit damage":
-    @Event playerDealtDamage
-    @Hero soldier
-    @Condition eventAbility == Button.PRIMARY_FIRE
-    @Condition eventWasCriticalHit
-
-    heal(victim,null, eventDamage)
-    damage(victim, eventPlayer, SOLDIER_HEAVY_PULSE_RIFLE_DAMAGE_CRITICAL_HJT)
-
+    damage(victim, attacker, eventDamage*(SOLDIER_HEAVY_PULSE_RIFLE_DAMAGE/OW2_SOLDIER_HEAVY_PULSE_RIFLE_DAMAGE)-eventDamage)
 
 rule "[soldier/pulse_rifle.opy]: Set pulse rifle projectile":
     @Event eachPlayer
     @Hero soldier
     @Condition eventPlayer.isFiringPrimaryFire()
     
-    wait()
+    wait(SOLDIER_HEAVY_PULSE_RIFLE_FIRERATE)
     if not RULE_CONDITION:
         return
     createProjectile(Projectile.ORB, eventPlayer, raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + ((directionTowards(eventPlayer.getEyePosition(), 
@@ -43,6 +32,6 @@ rule "[soldier/pulse_rifle.opy]: Set pulse rifle projectile":
         0, 
         0, 
         0)
-    wait()
+    wait(SOLDIER_HEAVY_PULSE_RIFLE_FIRERATE)
     if RULE_CONDITION:
         goto RULE_START
