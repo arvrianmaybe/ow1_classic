@@ -20,8 +20,6 @@ playervar shield_gen_pvar
 
 playervar cords 
 playervar objective 
-playervar point_position
-playervar ultimate_duration 
 playervar teleporter_up 
 playervar teleporter_used 
 
