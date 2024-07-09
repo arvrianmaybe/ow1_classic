@@ -57,7 +57,6 @@ settings {
                 "horizonLunarColony",
                 "paris",
                 "hanamuraWinter",
-                "samoa"
         ],
             "enableCompetitiveRules": true
         },
