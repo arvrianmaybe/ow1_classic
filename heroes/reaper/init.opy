@@ -1,6 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "heroes/reaper/reaping.opy"
+#!include "heroes/reaper/wraith.opy"
 
 rule "[reaper/init.opy]: Initialize Reaper":
     @Event eachPlayer
