@@ -3,6 +3,7 @@
 #!include "heroes/symmetra/shield.opy"
 #!include "heroes/symmetra/beam.opy"
 #!include "heroes/symmetra/orb.opy"
+#!include "heroes/symmetra/teleporter.opy"
 
 /*
 This Support Symettra workshop script is heavily based on
@@ -19,9 +20,13 @@ rule "[symmetra/init.opy]: Initialize Symmetra":
     setUltCost(SYMMETRA_ULT_COST)
     removeSelfHealing()
 
+    shield_gen = []
+    radius = true
+
+
     eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.disallowButton(Button.ABILITY_2)
-    # eventPlayer.disallowButton(Button.ULTIMATE) No teleporter cause it completly breaks everything for no reason. (it wont compile.)
+    eventPlayer.disallowButton(Button.ULTIMATE)
 
     createBeam(eventPlayer.beam_visibility, Beam.GOOD, updateEveryTick(eventPlayer.getEyePosition() + eventPlayer.getFacingDirection() + worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) * 0.28 + normalize(crossProduct(eventPlayer.getFacingDirection(), worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION))) * 0.19), (((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if player.hasSpawned() and eventPlayer.isInViewAngle(player.getEyePosition(), 60)], lambda i: distance(eventPlayer.getEyePosition(), i.getEyePosition())))[0]).getEyePosition()) + vect(0, -0.3, 0) if entityExists((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if eventPlayer.hasSpawned() and isInLoS(eventPlayer.getEyePosition(), player.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(), player.getEyePosition()) < 5], lambda i: distance(eventPlayer.getEyePosition(), i.getEyePosition())))[0]) else updateEveryTick(raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + 3 * eventPlayer.getFacingDirection(), null, null, false).getHitPosition()), eventPlayer.getTeam(), EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.beam_effect = getLastCreatedEntity()
@@ -30,3 +35,13 @@ rule "[symmetra/init.opy]: Initialize Symmetra":
     eventPlayer.beam_multiplier_dmg = 1
 
     eventPlayer._call_init = false
+
+rule "[symmetra/init.opy]: Clean up Symmetra":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.SYMMETRA
+
+    waitUntil(eventPlayer.getCurrentHero() != Hero.SYMMETRA, Math.INFINITY)
+    destroyTeleporter()
+
+    shield_gen = []
+    radius = false
