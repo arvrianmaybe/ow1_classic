@@ -30,9 +30,9 @@
                                DISCORD_LONG_LINK + "\n" + \
                                "\n" + \
                                "Source code:" + "\n" + \
-                               "https://shorter.me/Q4Se9")
-#!define GAMEMODE_CODE "WS8C5"
-#!define STAGING_CODE "KR56M"
+                               "https://github.com/arvrianmaybe/ow1_classic")
+#!define GAMEMODE_CODE "NC336"
+#!define STAGING_CODE "nothing"
 #!define DISCORD_SHORT_LINK "dsc.gg/runece"
 #!define DISCORD_LONG_LINK "discord.gg/vb5r2gfNTQ"
 
