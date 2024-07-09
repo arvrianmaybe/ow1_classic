@@ -22,13 +22,13 @@ rule "[orisa/init.opy]: Initialize Orisa":
     eventPlayer._is_using_supercharger = false
 
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
-    eventPlayer.is_using_halt = false
+    eventPlayer._is_using_halt = false
 
     eventPlayer.disallowButton(Button.ABILITY_2)
 
     resetFusionDriver()
     showOrisaAmmoHud()
-    eventPlayer.is_orisa_reloading = false
+    eventPlayer._is_orisa_reloading = false
     setBaseDamage(eventPlayer, ORISA_FUSION_DRIVER_DAMAGE/OW2_ORISA_FUSION_DRIVER_DAMAGE)
     eventPlayer.setProjectileSpeed(percent(ORISA_GUN_PROJECTILE_SPEED/OW2_ORISA_GUN_PROJECTILE_SPEED))
 
