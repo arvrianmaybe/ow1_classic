@@ -180,6 +180,7 @@ settings {
                 "ability2Cooldown%": percent(ILLARI_PYLON_COOLDOWN/OW2_ILLARI_PYLON_COOLDOWN)
             },
             "mei": {
+                "ammoClipSize%": percent(MEI_CLIP_SIZE/OW2_MEI_CLIP_SIZE),
                 "health%": percent(MEI_ICEWALL_HP/OW2_MEI_ICEWALL_HP), # for icewall
                 "ultGen%": percent(OW2_MEI_ULT_COST/MEI_ULT_COST)
             },
