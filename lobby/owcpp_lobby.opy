@@ -20,7 +20,7 @@
                                "ecksdee#4643" + "\n" + \
                                "wadetata#0315" + "\n" + \
                                "\n" + \
-                               "workshop.codes/remastered" + "\n" + \
+                               "workshop.codes/ow1classic-plus-plus" + "\n" + \
                                "\n" + \
                                "Discord:" + "\n" + \
                                DISCORD_SHORT_LINK + "\n" + \
