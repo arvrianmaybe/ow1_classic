@@ -10,4 +10,6 @@ rule "[mauga/init.opy]: Initialize Mauga":
 
     removeTankPassive()
     removePassiveHealing()
+
+    eventPlayer.setHealingDealt(percent(MAUGA_CARDIAC_OVERDRIVE_HEALING/OW2_MAUGA_CARDIAC_OVERDRIVE_HEALING))
     eventPlayer._call_init = false
