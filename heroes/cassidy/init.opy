@@ -10,9 +10,8 @@ rule "[cassidy/init.opy]: Initialize Cassidy":
     @Hero cassidy
     @Condition eventPlayer._call_init
 
-    setCustomHp(MCCREE_HEALTH, 0, 0)
-    setUltCost(MCCREE_ULT_COST)
-    setUltCost(MCCREE_ULT_COST)
+    setCustomHp(CASSIDY_HEALTH, 0, 0)
+    setUltCost(CASSIDY_ULT_COST)
 
     removeSelfHealing()
     eventPlayer._call_init = false

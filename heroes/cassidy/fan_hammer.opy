@@ -6,4 +6,4 @@ rule "[cassidy/fan_hammer.opy]: Launch Fan the Hammer damage":
     @Hero cassidy
     @Condition eventAbility == Button.SECONDARY_FIRE
 
-    damage(victim, attacker, eventDamage*(MCCREE_FAN_THE_HAMMER_DAMAGE/OW2_MCCREE_FAN_THE_HAMMER_DAMAGE) - eventDamage)
+    damage(victim, attacker, eventDamage*(CASSIDY_FAN_THE_HAMMER_DAMAGE/OW2_CASSIDY_FAN_THE_HAMMER_DAMAGE) - eventDamage)
