@@ -95,8 +95,9 @@ settings {
                 "ultGen%": percent(OW2_BRIGITTE_ULT_COST/BRIGITTE_ULT_COST)
             },
             "cassidy": {
-                "ability2Cooldown%": percent(MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
-                "ultGen%": percent(OW2_MCCREE_ULT_COST/MCCREE_ULT_COST)
+                "ability1Cooldown%": percent(CASSIDY_COMBAT_ROLL_COOLDOWN/OW2_CASSIDY_COMBAT_ROLL_COOLDOWN),
+                "ability2Cooldown%": percent(CASSIDY_FLASHBANG_COOLDOWN/OW2_CASSIDY_FLASHBANG_COOLDOWN),
+                "ultGen%": percent(OW2_CASSIDY_ULT_COST/CASSIDY_ULT_COST)
             },
             "doomfist": {
                 #"ability1ChargeRate%": 10,
