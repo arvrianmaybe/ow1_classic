@@ -32,6 +32,7 @@ def cleanUpAura():
 rule "[lucio/aura.opy]: Launch wallride":
     @Event eachPlayer
     @Hero lucio
+    @Condition not eventPlayer.isUsingAbility2()
     @Condition eventPlayer.isOnWall()
     
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-LUCIO_WALLRIDE_SPEED_PENALTY))
