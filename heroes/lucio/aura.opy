@@ -32,7 +32,7 @@ def cleanUpAura():
 rule "[lucio/aura.opy]: Launch wallride":
     @Event eachPlayer
     @Hero lucio
-    @Condition eventPlayer.isOnWall() == true
+    @Condition eventPlayer.isOnWall()
     
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-LUCIO_WALLRIDE_SPEED_PENALTY))
     waitUntil(not eventPlayer.isOnWall(), 3)
@@ -48,7 +48,7 @@ rule "[lucio/aura.opy]: Launch wallride":
 rule "[lucio/aura.opy]: Cross Fade heal":
     @Event eachPlayer
     @Hero lucio
-    @Condition eventPlayer.isUsingAbility1() == false
+    @Condition not eventPlayer.isUsingAbility1()
     
     eventPlayer.cross_fade_stats[0] = "Healing"
     wait(OW2_LUCIO_CROSSFADE_CAST_TIME)
@@ -58,7 +58,7 @@ rule "[lucio/aura.opy]: Cross Fade heal":
 rule "[lucio/aura.opy]: Cross Fade speed":
     @Event eachPlayer
     @Hero lucio
-    @Condition eventPlayer.isUsingAbility1() == true
+    @Condition eventPlayer.isUsingAbility1()
     
     eventPlayer.cross_fade_stats[0] = "Speed"
     wait(OW2_LUCIO_CROSSFADE_CAST_TIME)
@@ -69,7 +69,7 @@ rule "[lucio/aura.opy]: Cross Fade speed":
 
 rule "[lucio/aura.opy]: Cross Fade Targets":
     @Event eachPlayer
-    @Condition eventPlayer.cross_fade_stats[1] == true
+    @Condition eventPlayer.cross_fade_stats[1]
     
     eventPlayer.cross_fade_stats[4] = getPlayersInRadius(eventPlayer, LUCIO_AURA_RADIUS, eventPlayer.getTeam(), LosCheck.SURFACES_AND_ENEMY_BARRIERS)
     eventPlayer.cross_fade_stats[3].append([i for i in eventPlayer.cross_fade_stats[4] if not i in eventPlayer.cross_fade_stats[3]])
@@ -91,7 +91,7 @@ rule "[lucio/aura.opy]: Cross Fade Speed":
     @Event eachPlayer
     @Condition (any([eventPlayer in player.cross_fade_stats[3] and player.cross_fade_stats[0] == "Speed" and player.cross_fade_stats[1] == true for player in getPlayers(eventPlayer.getTeam())])) == true
     
-    eventPlayer.setMoveSpeed(OW2_LUCIO_CROSSFADE_INCREASE)
+    eventPlayer.setMoveSpeed(percent(OW2_LUCIO_CROSSFADE_INCREASE))
     waitUntil(all([not eventPlayer in player.cross_fade_stats[3] or player.cross_fade_stats[0] != "Speed" or player.cross_fade_stats[1] == false for player in getPlayers(eventPlayer.getTeam())]), Math.INFINITY)
     eventPlayer.setMoveSpeed(100)
 
@@ -110,8 +110,6 @@ rule "[lucio/aura.opy]: Cross Fade Healing":
 
 rule "[lucio/aura.opy]: set correct toggle":
     @Event eachPlayer
-    @Condition eventPlayer.isInAlternateForm() == false
+    @Condition not eventPlayer.isInAlternateForm()
     
     eventPlayer.cross_fade_stats[0] = "Healing"
-
-
