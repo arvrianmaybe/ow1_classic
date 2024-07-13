@@ -235,10 +235,11 @@ settings {
             "ramattra": {
                 "health%": percent(RAMATTRA_BARRIER_HEALTH/OW2_RAMATTRA_BARRIER_HEALTH), # for barrier
                 "ability1Cooldown%": percent(RAMATTRA_NEMESIS_COOLDOWN/OW2_RAMATTRA_NEMESIS_COOLDOWN),
-                # "enableInfiniteUlt": true, # for old ult
+                "enableInfiniteUlt": true, # for old ult
                 "ultGen%": percent(RAMATTRA_ULT_COST/OW2_RAMATTRA_ULT_COST),
             },
             "soldier": {
+                "secondaryFireCooldown%": percent(SOLDIER_HELIX_ROCKETS_COOLDOWN/OW2_SOLDIER_HELIX_ROCKETS_COOLDOWN),
                 "ability2Cooldown%": percent(SOLDIER_BIOTIC_FIELD_COOLDOWN/OW2_SOLDIER_BIOTIC_FIELD_COOLDOWN),
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/SOLDIER_ULT_COST)
             },

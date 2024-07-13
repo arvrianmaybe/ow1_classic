@@ -228,6 +228,7 @@ settings {
                 "ultGen%": percent(RAMATTRA_ULT_COST/OW2_RAMATTRA_ULT_COST),
             },
             "soldier": {
+                "secondaryFireCooldown%": percent(SOLDIER_HELIX_ROCKETS_COOLDOWN/OW2_SOLDIER_HELIX_ROCKETS_COOLDOWN),
                 "ability2Cooldown%": percent(SOLDIER_BIOTIC_FIELD_COOLDOWN/OW2_SOLDIER_BIOTIC_FIELD_COOLDOWN),
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/SOLDIER_ULT_COST)
             },
