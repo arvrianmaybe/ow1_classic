@@ -10,5 +10,5 @@ rule "[soldier/init.opy]: Initialize Soldier: 76":
 
     setCustomHp(SOLDIER_HEALTH, 0, 0)
     setUltCost(SOLDIER_ULT_COST)
-    removeSelfHealing()
+    removePassiveHealing()
     eventPlayer._call_init = false
