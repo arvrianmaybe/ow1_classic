@@ -8,12 +8,12 @@ playervar shield_pvar
 rule "[symmetra/shield.opy]: set symmetras shield":
     @Event eachPlayer
     @Hero symmetra
-    @Condition any([i.shield != true for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer)]) == true
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == true
+    @Condition any([i.shield != true for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer)])
+    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) <= 0
-    @Condition (any([eventPlayer.isInViewAngle(i.getEyePosition(), 45) and distance(eventPlayer.getEyePosition(), i.getEyePosition()) < 20 and isInLoS(eventPlayer.getEyePosition(), i.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS) for i in [i for i in ([player for player in getLivingPlayers(eventPlayer.getTeam()) if player.shield!= true]).exclude(eventPlayer) if i.hasSpawned()]])) == true
+    @Condition (any([eventPlayer.isInViewAngle(i.getEyePosition(), 45) and distance(eventPlayer.getEyePosition(), i.getEyePosition()) < 20 and isInLoS(eventPlayer.getEyePosition(), i.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS) for i in [i for i in ([player for player in getLivingPlayers(eventPlayer.getTeam()) if player.shield!= true]).exclude(eventPlayer) if i.hasSpawned()]]))
     @Condition len([player for player in getLivingPlayers(eventPlayer.getTeam()) if player.hasSpawned()]) > 1
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive()
     
     eventPlayer.shield_target = (sorted([i for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if i.hasSpawned() and distance(eventPlayer.getEyePosition(), i.getEyePosition()) < 20 and i.shield!= true], lambda i: distance(raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + 10 * eventPlayer.getFacingDirection(), getPlayers(eventPlayer.getTeam()), eventPlayer, true).getHitPosition(), i.getEyePosition())))[0]
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), eventPlayer.shield_target.getEyePosition(), 1)

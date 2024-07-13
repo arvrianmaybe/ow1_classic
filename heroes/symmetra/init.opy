@@ -34,6 +34,18 @@ rule "[symmetra/init.opy]: Initialize Symmetra":
     eventPlayer.beam_effect1 = getLastCreatedEntity()
     eventPlayer.beam_multiplier_dmg = 1
 
+    createInWorldText(getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if localPlayer.isAlive() else [], 
+        "[{0}]".format(floor(localPlayer.beam_multiplier_dmg)), 
+        updateEveryTick(localPlayer.getEyePosition() + (150 * (1.3 * worldVector(Vector.RIGHT, 
+        localPlayer, 
+        Transform.ROTATION) + (-0.5 * (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 
+        2, 
+        Clip.NONE, 
+        WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
+        Color.WHITE, 
+        SpecVisibility.DEFAULT)
+
     eventPlayer._call_init = false
 
 rule "[symmetra/init.opy]: Clean up Symmetra":

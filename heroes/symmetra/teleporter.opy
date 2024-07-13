@@ -192,7 +192,6 @@ rule "[symettra/teleporter.opy]: tp player with tp 1":
     
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), evalOnce(eventPlayer.getPosition()), 1)
     eventPlayer.teleport(getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].cords)
-    eventPlayer.setFacing(getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].shield_gen_facing + vect(0, eventPlayer.getFacingDirection().y, 0), Relativity.TO_WORLD)
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), eventPlayer.getPosition(), 1)
     getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].teleporter_used -= 1
 
@@ -208,6 +207,5 @@ rule "[symettra/teleporter.opy]: tp player with tp 2":
     
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), evalOnce(eventPlayer.getPosition()), 1)
     eventPlayer.teleport(getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].cords)
-    eventPlayer.setFacing(getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].shield_gen_facing + vect(0, eventPlayer.getFacingDirection().y, 0), Relativity.TO_WORLD)
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), eventPlayer.getPosition(), 1)
     getPlayersOnHero(Hero.SYMMETRA, eventPlayer.getTeam())[0].teleporter_used -= 1
