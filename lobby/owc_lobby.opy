@@ -54,44 +54,77 @@ settings {
     "gamemodes": {
         "assault": {
             "enabledMaps": [
-                "horizonLunarColony",
-                "paris",
-                "hanamuraWinter",
-        ],
-            "enableCompetitiveRules": true
+                "hanamura",
+                "templeOfAnubis",
+                "volskaya"
+            ]
         },
         "control": {
-            "disabledMaps": [
-                "lijiangTowerLny",
-                "samoa"
-            ],
-            "enableCompetitiveRules": true
+            "enabledMaps": [
+                {
+                    "ilios": [
+                        "morning"
+                    ]
+                },
+                {
+                    "lijiangTower": [
+                        "night"
+                    ]
+                },
+                {
+                    "oasis": [
+                        "night",
+                        "evening"
+                    ]
+                }
+            ]
         },
         "escort": {
-            "disabledMaps": [
-                "circuitRoyal",
-                "shambaliMonastery"
+            "enabledMaps": [
+                {
+                    "dorado": [
+                        "night"
+                    ]
+                },
+                {
+                    "route66": [
+                        "morning"
+                    ]
+                },
+                {
+                    "watchpointGibraltar": [
+                        "evening"
+                    ]
+                }
             ]
         },
         "hybrid": {
-            "disabledMaps": [
-                "paraiso",
-                "blizzWorldWinter",
-                "eichenwaldeHalloween",
-                "hollywoodHalloween",
-                "kingsRowWinter",
-                "midtown"
-            ],
-            "enableCompetitiveRules": true
+            "enabledMaps": [
+                {
+                    "paraiso": [
+                        "morning"
+                    ]
+                },
+                {
+                    "hollywood": [
+                        "morning"
+                    ]
+                },
+                {
+                    "kingsRow": [
+                        "night"
+                    ]
+                },
+                "numbani"
+            ]
         },
         "general": {
-            "heroLimit": "off",
+            "heroLimit": "1PerTeam",
             "roleLimit": "off",
             "gamemodeStartTrigger": "allSlotsFilled",
-            "tankPassiveHealthBonus": "alwaysEnabled",
-            "enableCompetitiveRules": true,
-            "enableKillFeed": false
-        },
+            "tankPassiveHealthBonus": "disabled",
+            "enableCompetitiveRules": true
+        }
     },
     "heroes": {
         "allTeams": {
