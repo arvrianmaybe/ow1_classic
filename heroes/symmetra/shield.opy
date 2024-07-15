@@ -18,7 +18,7 @@ rule "[symmetra/shield.opy]: set symmetras shield":
     eventPlayer.shield_target = (sorted([i for i in getLivingPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if i.hasSpawned() and distance(eventPlayer.getEyePosition(), i.getEyePosition()) < 20 and i.shield!= true], lambda i: distance(raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + 10 * eventPlayer.getFacingDirection(), getPlayers(eventPlayer.getTeam()), eventPlayer, true).getHitPosition(), i.getEyePosition())))[0]
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, eventPlayer.getTeam(), eventPlayer.shield_target.getEyePosition(), 1)
 
-    eventPlayer.shield_target.addHealthPool(Health.SHIELDS, SYMMETRA_EXTRA_SHIELDS, true, false)
+    eventPlayer.shield_target.addHealthPool(Health.NORMAL, SYMMETRA_EXTRA_SHIELDS, false, false)
     eventPlayer.shield_target.hp = getLastCreatedHealthPool()
 
     smallMessage(eventPlayer.shield_target, "+25 Shield From {0}".format(eventPlayer))
