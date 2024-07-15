@@ -25,4 +25,5 @@ rule "[zenyatta/discord.opy]: stop discord orb if victim died":
     @Condition eventPlayer.discord_orb_damage
     
     waitUntil(eventPlayer.isAlive(), Math.INFINITY)
+    eventPlayer.discord_orb_damage = false
     eventPlayer.setDamageReceived(100)
