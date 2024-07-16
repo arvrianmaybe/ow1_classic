@@ -12,9 +12,8 @@ rule "[symmetra/beam.opy]: set sym primary fire":
     @Event eachPlayer
     @Hero symmetra
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition eventPlayer.isAlive()
     @Condition not eventPlayer.isMeleeing()
-    @Condition not eventPlayer.isFiringSecondaryFire()
+    @Condition not eventPlayer.isFiringSecondaryFire() or not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
     @Condition not eventPlayer.isReloading()
     @Condition not isCCd(eventPlayer)
     
@@ -36,7 +35,7 @@ rule "[symmetra/beam.opy]: make beam visible":
     @Hero symmetra
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     @Condition not eventPlayer.isMeleeing()
-    @Condition not eventPlayer.isFiringSecondaryFire()
+    @Condition not eventPlayer.isFiringSecondaryFire() or not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
     @Condition not eventPlayer.isReloading()
     
     eventPlayer.beam_visibility = getAllPlayers()
@@ -46,7 +45,7 @@ rule "[symmetra/beam.opy]: make beam not visible":
     @Hero symmetra
     @Condition not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     @Condition not eventPlayer.isMeleeing()
-    @Condition not eventPlayer.isFiringSecondaryFire()
+    @Condition not eventPlayer.isFiringSecondaryFire() or not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
     @Condition eventPlayer.isReloading()
     
     eventPlayer.beam_visibility = null
@@ -69,3 +68,13 @@ rule "[symmetra/beam.opy]: symmetra multipier correction":
     @Condition eventPlayer.beam_multiplier_dmg >= SYMETTRA_MAX_LEVEL
     
     eventPlayer.beam_multiplier_dmg = 3.9
+
+rule "[symmetra/beam.opy]: set secondary fire speed":
+    @Event eachPlayer
+    @Hero symmetra
+    @Condition eventPlayer.isFiringSecondaryFire()
+    @Condition not eventPlayer.isReloading()
+
+    eventPlayer.setProjectileSpeed(25.897) # artillary based on
+    waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
+    eventPlayer.setProjectileSpeed(100)
