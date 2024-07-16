@@ -13,7 +13,7 @@ rule "[mercy/init.opy]: Initialize Mercy":
     eventPlayer.setAmmo(0, MERCY_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, MERCY_CLIP_SIZE)
 
-    eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer.setAbility2Enabled(false)
     eventPlayer.disallowButton(Button.ULTIMATE)
 
     eventPlayer.is_using_guardian_angel = false
