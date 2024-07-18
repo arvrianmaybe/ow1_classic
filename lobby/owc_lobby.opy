@@ -58,7 +58,7 @@ settings {
                 "templeOfAnubis",
                 "volskaya"
             ]
-        },
+        },  
         "control": {
             "enabledMaps": [
                 {
@@ -289,6 +289,7 @@ settings {
                 "ultGen%": percent(OW2_SYMMETRA_ULT_COST/SYMMETRA_ULT_COST)
             },
             "torbjorn": {
+                "ability2Duration%": percent(TORBJORN_OVERLOAD_DURATION/OW2_TORBJORN_OVERLOAD_DURATION),
                 "health%": percent(TORBJORN_TURRET_HEALTH/OW2_TORBJORN_TURRET_HEALTH), # for turret hp
                 "ultGen%": percent(OW2_TORBJORN_ULT_COST/TORBJORN_ULT_COST)
             },
