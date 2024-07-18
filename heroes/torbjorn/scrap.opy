@@ -11,7 +11,6 @@ playervar scrap_pvar
 #!defineMember _scrap_effects scrap_pvar [6]
 #!defineMember _scrap_effects1 scrap_pvar [7]
 #!defineMember _scrap_effects2 scrap_pvar [8]
-playervar scrap_meter
 playervar scrap_position 
 
 
