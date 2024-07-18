@@ -45,3 +45,5 @@ def endOverload():
     eventPlayer._torbjorn_hp = eventPlayer.getHealthOfType(Health.NORMAL)
     setCustomHp(TORBJORN_HEALTH, 0, 0)
     eventPlayer.setHealth(min(TORBJORN_HEALTH, eventPlayer._torbjorn_hp))
+
+    eventPlayer._overload_enabled = false
