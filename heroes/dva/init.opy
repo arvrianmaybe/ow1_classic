@@ -6,6 +6,7 @@
 #!include "heroes/dva/bomb.opy"
 #!include "heroes/dva/matrix.opy"
 #!include "heroes/dva/micro_missiles.opy"
+#!include "heroes/dva/remech.opy"
 
 rule "[dva/init.opy]: Initialize DVa":
     @Event eachPlayer
