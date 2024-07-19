@@ -1,7 +1,7 @@
 #!mainFile "../main.opy"
 
 # Environment Variables
-#!define GAMEMODE_VERSION "v1"
+#!define GAMEMODE_VERSION "v1.7"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_DESCRIPTION (GAMEMODE_NAME + " " + GAMEMODE_VERSION + "\n" + \
                                "\n" + \
@@ -219,6 +219,7 @@ settings {
                 "ultGen%": percent(OW2_MEI_ULT_COST/MEI_ULT_COST)
             },
             "mercy": {
+                "ability1Cooldown%": MERCY_GUARDIAN_ANGEL_COOLDOWN/OW2_MERCY_GUARDIAN_ANGEL_COOLDOWN,
                 "ultGen%": percent(OW2_MERCY_ULT_COST/MERCY_ULT_COST),
                 "enablePassive": false
             },
