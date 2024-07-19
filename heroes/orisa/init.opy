@@ -18,6 +18,7 @@ rule "[orisa/init.opy]: Initialize Orisa":
     getPlayers(eventPlayer.getTeam()).friendly_orisa_player = eventPlayer
     getPlayers(getOppositeTeam(eventPlayer.getTeam())).enemy_orisa_player = eventPlayer
     
+    wait()
     eventPlayer.disallowButton(Button.ULTIMATE)
     eventPlayer._is_using_supercharger = false
 
