@@ -14,3 +14,10 @@ rule "[ramattra/init.opy]: Initialize Ramattra":
     removeTankPassive()
     removeSelfHealing()
     eventPlayer._call_init = false
+
+rule "[ramattra/init.opy]: Clean up Ramattra":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.RAMATTRA
+
+    waitUntil(eventPlayer.getCurrentHero() != Hero.RAMATTRA, Math.INFINITY)
+    stopAnnihilation()
