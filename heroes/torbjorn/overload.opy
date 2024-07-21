@@ -47,5 +47,14 @@ def endOverload():
     eventPlayer.setHealth(min(TORBJORN_HEALTH, eventPlayer._torbjorn_hp))
 
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, 0)
+    eventPlayer.setUltCharge(0)
 
     eventPlayer._overload_enabled = false
+
+rule "[torbjorn/overload.opy]: Reset if Torbjorn died":
+    @Event playerDied
+    @Hero torbjorn
+    @Condition eventPlayer._overload_enabled
+
+    waitUntil(eventPlayer.isAlive(), Math.INFINITY)
+    endOverload()
