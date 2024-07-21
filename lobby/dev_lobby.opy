@@ -159,7 +159,7 @@ settings {
                 "ultGen%": percent(OW2_MEI_ULT_COST/MEI_ULT_COST)
             },
             "mercy": {
-                "ability1Cooldown%": MERCY_GUARDIAN_ANGEL_COOLDOWN/OW2_MERCY_GUARDIAN_ANGEL_COOLDOWN,
+                "ability1Cooldown%": 33.33,
                 "ultGen%": percent(OW2_MERCY_ULT_COST/MERCY_ULT_COST),
                 "enablePassive": false
             },
