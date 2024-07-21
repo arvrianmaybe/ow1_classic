@@ -53,6 +53,9 @@ settings {
     },
     "gamemodes": {
         "assault": {
+            "disabledMaps": [
+                "hanamuraWinter"
+            ],
             "enableCompetitiveRules": true
         },
         "control": {
