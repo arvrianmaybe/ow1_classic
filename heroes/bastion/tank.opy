@@ -25,6 +25,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
+    setCustomHp(BASTION_TANK_HEALTH, BASTION_TANK_ARMOR, 0)
 
     waitUntil(not eventPlayer.isUsingAbility1(), BASTION_TANK_CONFIG_DURATION)
 
@@ -33,6 +34,8 @@ rule "[bastion/tank.opy]: Initialize tank mode":
         eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon mode
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setUltEnabled(true)
+    clearCustomHp()
+    setCustomHp(BASTION_HEALTH, BASTION_ARMOR, 0)
 
 
 rule "[bastion/tank.opy]: Fire tank shells":
