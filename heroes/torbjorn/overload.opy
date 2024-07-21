@@ -46,4 +46,6 @@ def endOverload():
     setCustomHp(TORBJORN_HEALTH, 0, 0)
     eventPlayer.setHealth(min(TORBJORN_HEALTH, eventPlayer._torbjorn_hp))
 
+    eventPlayer.setAbilityCooldown(Button.ABILITY_2, 0)
+
     eventPlayer._overload_enabled = false
