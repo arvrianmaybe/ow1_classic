@@ -74,10 +74,6 @@ rule "[torbjorn/scrap.opy]: armor packs gone":
     eventPlayer._scrap = 0
     destroyEffect(eventPlayer._scrap_effects)
     eventPlayer._scrap_effects = null
-    destroyEffect(eventPlayer._scrap_effects1)
-    eventPlayer._scrap_effects1 = null
-    destroyEffect(eventPlayer._scrap_effects2)
-    eventPlayer._scrap_effects2 = null
 
 
 rule "[torbjorn/scrap.opy]: set armor packs effects":
@@ -95,28 +91,6 @@ rule "[torbjorn/scrap.opy]: set armor packs effects":
         EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer._scrap_effects = getLastCreatedEntity()
 
-    if (eventPlayer._scrap_effects1 == null):
-    createEffect(getPlayers(eventPlayer.getTeam()), 
-        Effect.SPHERE, 
-        Color.YELLOW, 
-        eventPlayer.scrap_position + worldVector(vect(0, 1, 0), 
-        eventPlayer, 
-        Transform.ROTATION), 
-        0.6, 
-        EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-    eventPlayer._scrap_effects1 = getLastCreatedEntity()
-
-    if (eventPlayer._scrap_effects2 == null):
-    createEffect(getPlayers(eventPlayer.getTeam()), 
-    Effect.RING, 
-    Color.YELLOW, 
-    eventPlayer.scrap_position + worldVector(vect(0, 1, 0), 
-    eventPlayer, 
-    Transform.ROTATION), 
-    1, 
-    EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-    eventPlayer._scrap_effects2 = getLastCreatedEntity()
-
 
 rule "[torbjorn/scrap.opy]: Armor Pack Pickup":
     @Event eachPlayer
@@ -124,7 +98,4 @@ rule "[torbjorn/scrap.opy]: Armor Pack Pickup":
     @Condition (len([player for player in getPlayersInRadius(eventPlayer.scrap_position, 1, eventPlayer.getTeam(), LosCheck.SURFACES) if player.isAlive() and player._set_scrap_armor < TORBJORN_SCRAP_ARMOR])) > 0
     
     eventPlayer._scrap = 0
-    (([player for player in getPlayersInRadius(eventPlayer.scrap_position, 1, eventPlayer.getTeam(), LosCheck.SURFACES) if player.isAlive() and player._set_scrap_armor < TORBJORN_SCRAP_ARMOR]))._set_scrap_armor = 0
-    wait()
-    (([player for player in getPlayersInRadius(eventPlayer.scrap_position, 1, eventPlayer.getTeam(), LosCheck.SURFACES) if player.isAlive() and player._set_scrap_armor < TORBJORN_SCRAP_ARMOR]))._set_scrap_armor = TORBJORN_SCRAP_ARMOR
-    getPlayersInRadius(eventPlayer, 5, eventPlayer.getTeam(), LosCheck.SURFACES).addHealthPool(Health.NORMAL, TORBJORN_SCRAP_ARMOR, false, true)
+    getPlayersInRadius(eventPlayer, 1, eventPlayer.getTeam(), LosCheck.SURFACES).addHealthPool(Health.NORMAL, TORBJORN_SCRAP_ARMOR, false, true)
