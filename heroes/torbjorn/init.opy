@@ -38,3 +38,29 @@ rule "[torbjorn/init.opy]: Clean up Torbjorn":
 
     waitUntil(eventPlayer.getCurrentHero() != Hero.TORBJORN, Math.INFINITY)
     destroyProgressBarHud(eventPlayer._scrap_hud)
+
+rule "[torbjorn/init.opy]: OW1 Torbjorn fire rate":
+    @Event eachPlayer
+    @Hero torbjorn
+    @Condition eventPlayer.getCurrentWeapon() == 2
+    @Condition eventPlayer.isFiringPrimaryFire()
+    @Condition not eventPlayer.isUsingAbility2()
+
+    eventPlayer.disallowButton(Button.PRIMARY_FIRE)
+    wait(TORBJORN_HAMMER_RECOVERY_TIME)
+    eventPlayer.allowButton(Button.PRIMARY_FIRE)
+    if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
+        eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
+
+rule "[torbjorn/init.opy]: OW1 Torbjorn fire rate melee":
+    @Event eachPlayer
+    @Hero torbjorn
+    @Condition eventPlayer.getCurrentWeapon() == 2
+    @Condition eventPlayer.isHoldingButton(Button.MELEE) # For some reason it wont let me do isMeleeing()
+    @Condition not eventPlayer.isUsingAbility2()
+
+    eventPlayer.disallowButton(Button.MELEE)
+    wait(TORBJORN_HAMMER_RECOVERY_TIME)
+    eventPlayer.allowButton(Button.MELEE)
+    if eventPlayer.isHoldingButton(Button.MELEE):
+        eventPlayer.forceButtonPress(Button.MELEE)
