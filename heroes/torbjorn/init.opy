@@ -29,8 +29,6 @@ rule "[torbjorn/init.opy]: Initialize Torbjorn":
         SpecVisibility.DEFAULT)
     eventPlayer._scrap_hud = getLastCreatedText()
 
-    createProgressBarInWorldText([player for player in getPlayersOnHero(Hero.TORBJORN, Team.ALL) if player.turret_position != vect(0, -500, 0)], localPlayer.turret_progress, "{0}".format(localPlayer.turret_level), updateEveryTick(localPlayer.getEyePosition() + (100 * (2 * worldVector(Vector.LEFT, localPlayer, Transform.ROTATION) + (-1.5 * (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 1, Clip.NONE, Color.WHITE, Color.WHITE, ProgressWorldTextReeval.VISIBILITY_POSITION_VALUES_AND_COLOR, SpecVisibility.DEFAULT)
-
     eventPlayer.turret_level = 1
 
     eventPlayer._call_init = false
