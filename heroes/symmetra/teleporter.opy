@@ -104,6 +104,16 @@ rule "[symettra/teleporter.opy]: spawn teleporter":
     
     eventPlayer.disallowButton(Button.PRIMARY_FIRE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    eventPlayer.disallowButton(Button.ABILITY_1)
+    eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer.disallowButton(Button.ULTIMATE)
+
+    eventPlayer.disallowButton(Button.MELEE)
+    eventPlayer.disallowButton(Button.JUMP)
+    eventPlayer.disallowButton(Button.CROUCH)
+    eventPlayer.disallowButton(Button.RELOAD)
+    eventPlayer.disallowButton(Button.INTERACT)
+
     eventPlayer.cords = eventPlayer.getPosition()
     chase(eventPlayer.cords, raycast(raycast(eventPlayer.getEyePosition(), 
         eventPlayer.getEyePosition() + vect(eventPlayer.getFacingDirection().x, 
@@ -156,6 +166,13 @@ rule "[symettra/teleporter.opy]: spawn teleporter":
 
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
     eventPlayer.allowButton(Button.SECONDARY_FIRE)
+    eventPlayer.allowButton(Button.ABILITY_1)
+
+    eventPlayer.allowButton(Button.MELEE)
+    eventPlayer.allowButton(Button.JUMP)
+    eventPlayer.allowButton(Button.CROUCH)
+    eventPlayer.allowButton(Button.RELOAD)
+    eventPlayer.allowButton(Button.INTERACT)
 
     if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
         createTeleporter()
