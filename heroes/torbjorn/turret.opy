@@ -14,9 +14,10 @@ eventPlayer.turret_level = 1 \
 eventPlayer.turret_progress = 0 \
 clearTurretHealth()
 
-playervar turret_position 
-playervar turret_level 
-playervar turret_progress 
+playervar turret_pvar
+#!defineMember turret_position turret_pvar [0]
+#!defineMember turret_level turret_pvar [1]
+#!defineMember turret_progress turret_pvar [2]
 
 subroutine setTurretHealth
 subroutine clearTurretHealth
