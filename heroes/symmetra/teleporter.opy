@@ -5,7 +5,6 @@ playervar shield_gen
 globalvar teleporter1
 globalvar teleporter2
 globalvar shield_gen 
-globalvar radius 
 
 playervar shield_gen_pvar
 #!defineMember shield_gen_effect shield_gen_pvar [0]
