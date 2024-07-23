@@ -28,5 +28,6 @@ rule "[bastion/init.opy]: Clean up Bastion":
     @Condition eventPlayer.getCurrentHero() == Hero.BASTION
     
     waitUntil(eventPlayer.getCurrentHero() != Hero.BASTION, Math.INFINITY)
+    removeHealthPool(eventPlayer.tank_armor)
     hideMachineGunAmmo()
     hideSelfRepairRing()
