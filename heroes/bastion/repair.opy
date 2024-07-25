@@ -87,8 +87,7 @@ rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
 rule "[bastion/repair.opy]: Deactivate self-repair":
     @Event eachPlayer
     @Hero bastion
-    @Condition eventPlayer.current_configuration != Configuration.SENTRY
-    @Condition isPressingSelfRepairButton(eventPlayer) or eventPlayer.isFiringPrimaryFire() or not eventPlayer.hasStatusEffect(Status.ROOTED)
+    @Condition isPressingSelfRepairButton(eventPlayer) or eventPlayer.isFiringPrimaryFire()
 
 
     stopHoT(eventPlayer.self_repair_instance) # Stop healing
