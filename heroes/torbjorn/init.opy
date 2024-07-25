@@ -40,6 +40,8 @@ rule "[torbjorn/init.opy]: Clean up Torbjorn":
 
     waitUntil(eventPlayer.getCurrentHero() != Hero.TORBJORN, Math.INFINITY)
     destroyProgressBarHud(eventPlayer._scrap_hud)
+    eventPlayer.turret_level = 1
+    eventPlayer._scrap = 1
 
 rule "[torbjorn/init.opy]: OW1 Torbjorn fire rate":
     @Event eachPlayer

@@ -12,6 +12,7 @@ rule "[torbjorn/overload.opy]: Set overload":
     @Hero torbjorn
     @Condition eventPlayer.getUltCharge() == 100
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
+    @Condition not eventPlayer.isHoldingButton(Button.ABILITY_2)
     @Condition eventPlayer.isAlive() # Not use if dead
 
     startOverload()
