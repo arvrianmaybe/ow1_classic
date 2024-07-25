@@ -8,15 +8,6 @@ def startFiring():
         waitUntil(not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), Math.INFINITY) 
         eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
 
-#!defineMember bastionCastTime() \
-if eventPlayer.isUsingAbility1(): \
-    eventPlayer.disallowButton(Button.ABILITY_1) \
-    eventPlayer.setPrimaryFireEnabled(false) \
-    wait(BASTION_SENTRY_CAST_TIME) \
-    eventPlayer.allowButton(Button.ABILITY_1) \
-    eventPlayer.setPrimaryFireEnabled(true) \
-    startFiring()
-
 #!defineMember stopFiring() \
 if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE): \
     eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
@@ -32,16 +23,12 @@ rule "[bastion/sentry.opy]: Initialize sentry mode":
 
     eventPlayer.current_configuration = Configuration.SENTRY
 
-    eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 
     eventPlayer.setDamageReceived(percent(BASTION_ICONCLAD_DAMAGE_REDUCTION/OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION))
     setBaseDamage(eventPlayer, BASTION_SENTRY_CONFIG_DAMAGE/OW2_BASTION_ASSAULT_CONFIG_DAMAGE)
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
     eventPlayer.setKnockbackReceived(0)
-    
-    wait(BASTION_SENTRY_CAST_TIME)
-    bastionCastTime()
 
     waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
     if eventPlayer.current_configuration == Configuration.SENTRY:
