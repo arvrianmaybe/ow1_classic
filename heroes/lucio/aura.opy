@@ -11,13 +11,7 @@ rule "[lucio/aura.opy]: Launch wallride":
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-LUCIO_WALLRIDE_SPEED_PENALTY))
     waitUntil(not eventPlayer.isOnWall(), 3)
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-LUCIO_WALLRIDE_SPEED_PENALTY))
-    if eventPlayer.isOnWall():
-        eventPlayer.forceButtonPress(Button.CROUCH)
-        wait()
-        if eventPlayer.isOnWall():
-            eventPlayer.forceButtonPress(Button.JUMP)
-    else:
-        eventPlayer.applyImpulse(eventPlayer.getVelocity() * -1, 2.5, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
+    eventPlayer.applyImpulse(eventPlayer.getVelocity() * -1, 2.5, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
 
 rule "[lucio/aura.opy]: Cross Fade Targets":
     @Event eachPlayer
