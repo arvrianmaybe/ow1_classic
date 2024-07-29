@@ -2,37 +2,10 @@
 
 playervar cross_fade_stats 
 playervar cross_fade_index 
-playervar cross_fade_effects
-
-subroutine lucioAura
-subroutine cleanUpAura
-
-def lucioAura():
-    @Name "[lucio/aura.opy]: lucioAura()"
-
-    eventPlayer.cross_fade_stats = ["Speed", true, "Toggle", [], [], []]
-
-    if (eventPlayer.cross_fade_effects == null): 
-    createEffect([player for player in getAllPlayers() if eventPlayer.cross_fade_stats[1] == true], 
-            Effect.RING, 
-            Color.GREEN if eventPlayer.cross_fade_stats[0] == "Speed" 
-            else Color.YELLOW, 
-            raycast(eventPlayer.getPosition() + Vector.UP, 
-            updateEveryTick(eventPlayer.getPosition()) - vect(0, 99, 0), 
-            null, eventPlayer, false).getHitPosition() + Vector.UP * 0.1, LUCIO_AURA_RADIUS, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR) 
-    eventPlayer.cross_fade_effects = getLastCreatedText()
-
-def cleanUpAura():
-    @Name "[lucio/aura.opy]: cleanUpAura()"
-
-    destroyEffect(eventPlayer.cross_fade_effects) 
-    destroyAllEffects()
-    eventPlayer.cross_fade_effects = null
 
 rule "[lucio/aura.opy]: Launch wallride":
     @Event eachPlayer
     @Hero lucio
-    @Condition not eventPlayer.isUsingAbility2()
     @Condition eventPlayer.isOnWall()
     
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-LUCIO_WALLRIDE_SPEED_PENALTY))
@@ -45,28 +18,6 @@ rule "[lucio/aura.opy]: Launch wallride":
             eventPlayer.forceButtonPress(Button.JUMP)
     else:
         eventPlayer.applyImpulse(eventPlayer.getVelocity() * -1, 2.5, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-
-rule "[lucio/aura.opy]: Cross Fade heal":
-    @Event eachPlayer
-    @Hero lucio
-    @Condition not eventPlayer.isUsingAbility1()
-    
-    eventPlayer.cross_fade_stats[0] = "Healing"
-    wait(OW2_LUCIO_CROSSFADE_CAST_TIME)
-    waitUntil(eventPlayer.isUsingAbility1(), Math.INFINITY)
-
-
-rule "[lucio/aura.opy]: Cross Fade speed":
-    @Event eachPlayer
-    @Hero lucio
-    @Condition eventPlayer.isUsingAbility1()
-    
-    eventPlayer.cross_fade_stats[0] = "Speed"
-    wait(OW2_LUCIO_CROSSFADE_CAST_TIME)
-    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
-    if RULE_CONDITION:
-        goto RULE_START
-
 
 rule "[lucio/aura.opy]: Cross Fade Targets":
     @Event eachPlayer
@@ -111,6 +62,9 @@ rule "[lucio/aura.opy]: Cross Fade Healing":
 
 rule "[lucio/aura.opy]: set correct toggle":
     @Event eachPlayer
+    @Hero lucio
     @Condition not eventPlayer.isInAlternateForm()
     
     eventPlayer.cross_fade_stats[0] = "Healing"
+    waitUntil(eventPlayer.isInAlternateForm(), Math.INFINITY)
+    eventPlayer.cross_fade_stats[0] = "Speed"

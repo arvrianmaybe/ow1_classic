@@ -19,6 +19,6 @@ rule "[lucio/soundwave.opy]: disallow during reload":
     @Hero lucio
     @Condition eventPlayer.isReloading()
 
-    eventPlayer.setSecondaryFireEnabled(false)
+    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
     waitUntil(not eventPlayer.isReloading(), Math.INFINITY)
-    eventPlayer.setSecondaryFireEnabled(true)
+    eventPlayer.allowButton(Button.SECONDARY_FIRE)
