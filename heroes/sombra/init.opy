@@ -10,6 +10,7 @@ rule "[sombra/init.opy]: Initialize Sombra":
     @Event eachPlayer
     @Hero sombra
 
+    wait()
     setCustomHp(SOMBRA_HEALTH, 0, 0)
     setUltCost(SOMBRA_ULT_COST)
 
