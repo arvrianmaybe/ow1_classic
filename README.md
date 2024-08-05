@@ -39,7 +39,7 @@ Progress (✅ = Equivalent to OW1, ✔ = Close to OW1, Blank = Untouched):
 | Sigma | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | Sojourn | ✅ | ✅ |  |  |  |  |
 | Soldier: 76 | ✅ | ✅ | ✅ | ✔ | ✅ |  |
-| Sombra |  | ✅ | ✅ | ✔ | ✅ |  |
+| Sombra |  | ✅ | ✅ | ✅ | ✅ | ✅ Opportunist |
 | Symmetra | ✔ | ✔ | ✔ | ✔ | ✅ |  |
 | Torbjorn |  | ✅ | ✅ | ✅ | ✅ |  |
 | Tracer | ✅ | ✅ | ✅ | ✅ | ✅ |  |
