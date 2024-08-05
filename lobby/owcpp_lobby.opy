@@ -70,6 +70,9 @@ settings {
         "push": {
             "enableCompetitiveRules": true
         },
+        "flashpoint": {
+            "enableCompetitiveRules": true
+        },
         "hybrid": {
             "disabledMaps": [
                 "blizzWorldWinter",
@@ -123,7 +126,7 @@ settings {
             },
             "doomfist": {
                 #"ability1ChargeRate%": 10,
-                "ammoRegenerationTime%": 162,
+                "ammoRegenerationTime%": 200,
                 "secondaryFireKb%": 0,
                 "ultGen%": percent(OW2_DOOMFIST_ULT_COST/DOOMFIST_ULT_COST)
             },
