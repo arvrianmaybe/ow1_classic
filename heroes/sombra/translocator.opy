@@ -12,6 +12,7 @@ playervar trasnloc_velocity
 playervar transloc_p0
 playervar transloc_v0
 playervar transloc_time
+playervar transloc_timer
 
 playervar call_throwTranslocator
 
@@ -40,14 +41,16 @@ rule "[sombra/translocator.opy]: Bind Ability 2 to translocator":
     waitUntil(eventPlayer.isHoldingButton(Button.ABILITY_2), Math.INFINITY)
 
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, SOMBRA_TRANSLOCATOR_COOLDOWN_TIME)
+    eventPlayer.transloc_timer = SOMBRA_TRANSLOCATOR_DURATION
+    chase(eventPlayer.transloc_timer, 0, rate=1, ChaseReeval.DESTINATION_AND_RATE)
     destroyTranslocator()
     eventPlayer.call_throwTranslocator = true
     wait() # calls throwTranslocator() and returns immediately instead of waiting
     eventPlayer.call_throwTranslocator = false
     waitUntil(not eventPlayer.isHoldingButton(Button.ABILITY_2), Math.INFINITY)
     waitUntil((eventPlayer.isHoldingButton(Button.ABILITY_2) \
-            or eventPlayer.isHoldingButton(Button.INTERACT) \
             or eventPlayer.isDead()) \
+            or eventPlayer.transloc_timer <= 0
        and not isCCd(eventPlayer) \
        and not eventPlayer._is_casting_emp, Math.INFINITY) # prevent tp when cc'd or when casting emp
     if (eventPlayer.isHoldingButton(Button.ABILITY_2)):
@@ -55,11 +58,7 @@ rule "[sombra/translocator.opy]: Bind Ability 2 to translocator":
         playEffect(getAllPlayers(), DynamicEffect.BAD_PICKUP_EFFECT, Color.PURPLE, eventPlayer, 100)
         playEffect(getAllPlayers(), DynamicEffect.BUFF_IMPACT_SOUND, Color.PURPLE, eventPlayer.transloc_position, 100)
         eventPlayer.teleport(eventPlayer.transloc_position)
-    if (eventPlayer.isHoldingButton(Button.INTERACT)):
-        playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.PURPLE, eventPlayer.transloc_position, 3)
-        playEffect(getAllPlayers(), DynamicEffect.EXPLOSION_SOUND, Color.PURPLE, eventPlayer.transloc_position, 100)
     destroyTranslocator()
-
 
 def destroyTranslocator():
     @Name "[sombra/translocator.opy]: destroyTranslocator()"

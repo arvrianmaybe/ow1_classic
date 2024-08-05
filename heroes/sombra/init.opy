@@ -4,6 +4,7 @@
 #!include "heroes/sombra/hack.opy"
 #!include "heroes/sombra/stealth.opy"
 #!include "heroes/sombra/translocator.opy"
+#!include "heroes/sombra/opportunist.opy"
 
 rule "[sombra/init.opy]: Initialize Sombra":
     @Event eachPlayer
@@ -18,7 +19,7 @@ rule "[sombra/init.opy]: Initialize Sombra":
     eventPlayer.disallowButton(Button.ABILITY_1)
     eventPlayer.disallowButton(Button.ABILITY_2)
 
-    eventPlayer.is_using_stealth = false
+    eventPlayer._is_using_stealth = false
     # removeSelfHealing()
 
     eventPlayer._call_init = false

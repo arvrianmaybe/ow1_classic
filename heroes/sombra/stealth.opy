@@ -1,7 +1,8 @@
 #!mainFile "../../dev_main.opy"
 
-playervar is_using_stealth
-playervar stealth_hud_id
+playervar stealth_pvar
+#!defineMember _is_using_stealth stealth_pvar [0]
+#!defineMember _stealth_hud_id stealth_pvar [1]
 
 subroutine enterStealth
 subroutine exitStealth
@@ -11,7 +12,7 @@ subroutine showStealthHud
 rule "[sombra/stealth.opy]: Remove Stealth passive":
     @Event eachPlayer
     @Hero sombra
-    @Condition not eventPlayer.is_using_stealth
+    @Condition not eventPlayer._is_using_stealth
     @Condition not eventPlayer.isFiringPrimaryFire()
     @Condition not eventPlayer.isFiringSecondaryFire()
     @Condition not eventPlayer.isMeleeing()
@@ -29,7 +30,7 @@ rule "[sombra/stealth.opy]: Bind Ability 1 to stealth":
     @Hero sombra
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_1)
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_1) <= 0
-    @Condition not eventPlayer.is_using_stealth
+    @Condition not eventPlayer._is_using_stealth
 
     enterStealth()
 
@@ -39,15 +40,14 @@ def enterStealth():
 
     eventPlayer.setAbility1Enabled(false)
     eventPlayer.setSecondaryFireEnabled(false) # Disable hacking during invis
-    showStealthHud()
     wait(SOMBRA_STEALTH_CAST_TIME)
+    showStealthHud()
     eventPlayer.setInvisibility(Invis.ENEMIES)
     eventPlayer.setMoveSpeed(percent(SOMBRA_STEALTH_MOVEMENT_BONUS))
-    eventPlayer.is_using_stealth = true
+    eventPlayer._is_using_stealth = true
     damage(eventPlayer, null, 0.01)
     heal(eventPlayer, null, 0.01)
     wait(OW2_SOMBRA_STEALTH_COOLDOWN)
-    wait(OW2_SOMBRA_STEALTH_CAST_TIME)
     eventPlayer.setInvisibility(Invis.NONE)
     eventPlayer.setMoveSpeed(percent(SOMBRA_STEALTH_MOVEMENT_BONUS/OW2_SOMBRA_STEALTH_MOVEMENT_BONUS))
     exitStealth()
@@ -56,7 +56,7 @@ def enterStealth():
 rule "[sombra/stealth.opy]: Exit Stealth when shooting":
     @Event eachPlayer
     @Hero sombra
-    @Condition eventPlayer.is_using_stealth
+    @Condition eventPlayer._is_using_stealth
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) \
             or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) \
             or eventPlayer.isHoldingButton(Button.MELEE) \
@@ -70,7 +70,7 @@ rule "[sombra/stealth.opy]: Exit Stealth when shooting":
 rule "[sombra/stealth.opy]: Exit Stealth when taking damage":
     @Event playerTookDamage
     @Hero sombra
-    @Condition eventPlayer.is_using_stealth
+    @Condition eventPlayer._is_using_stealth
 
     exitStealth()
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, SOMBRA_STEALTH_COOLDOWN)
@@ -79,8 +79,8 @@ rule "[sombra/stealth.opy]: Exit Stealth when taking damage":
 def exitStealth():
     @Name "[sombra/stealth.opy]: exitStealth()"
 
-    destroyEffect(eventPlayer.stealth_hud_id)
-    eventPlayer.stealth_hud_id = null
+    destroyEffect(eventPlayer._stealth_hud_id)
+    eventPlayer._stealth_hud_id = null
 
     damage(eventPlayer, null, 0.01)
     heal(eventPlayer, null, 0.01)
@@ -90,12 +90,12 @@ def exitStealth():
     wait(SOMBRA_STEALTH_RECOVERY_TIME)
     eventPlayer.setAbility1Enabled(true)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, SOMBRA_STEALTH_COOLDOWN)
-    eventPlayer.is_using_stealth = false
+    eventPlayer._is_using_stealth = false
 
 
 def showStealthHud():
     @Name "[sombra/stealth.opy]: showStealthHud()"
 
-    if eventPlayer.stealth_hud_id == null:
+    if eventPlayer._stealth_hud_id == null:
         createEffect(eventPlayer, Effect.SPHERE, rgb(100, 68, 179), eventPlayer, 1, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-        eventPlayer.stealth_hud_id = getLastCreatedEntity()
+        eventPlayer._stealth_hud_id = getLastCreatedEntity()
