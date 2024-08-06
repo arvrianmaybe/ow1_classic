@@ -10,7 +10,6 @@ rule "[sombra/init.opy]: Initialize Sombra":
     @Event eachPlayer
     @Hero sombra
 
-    wait()
     setCustomHp(SOMBRA_HEALTH, 0, 0)
     setUltCost(SOMBRA_ULT_COST)
 
@@ -33,3 +32,13 @@ rule "[sombra/init.opy]: Clean up Sombra":
     waitUntil(eventPlayer.getCurrentHero() != Hero.SOMBRA, Math.INFINITY)
     exitStealth()
     destroyTranslocator()
+
+rule"[sombra/init.opy]: Hard code disallow sombra":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.SOMBRA
+
+    do:
+        wait(10)
+        eventPlayer.disallowButton(Button.ABILITY_1)
+        eventPlayer.disallowButton(Button.ABILITY_2)
+    while RULE_CONDITION
