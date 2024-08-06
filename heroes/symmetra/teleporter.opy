@@ -44,7 +44,7 @@ def createTeleporter():
     destroyInWorldText(eventPlayer.shield_gen_effect3)
     destroyEffect(eventPlayer.shield_gen_effect4)
     eventPlayer.setUltCharge(0)
-    eventPlayer.teleporter_used = 6
+    eventPlayer.teleporter_used = SYMMETRA_TELEPORTER_MAX_USE
     eventPlayer.objective = getCurrentObjective()
     eventPlayer.shield_gen = []
     eventPlayer.shiled_gen_owned = eventPlayer
