@@ -101,7 +101,7 @@ settings {
             },
             "doomfist": {
                 #"ability1ChargeRate%": 10,
-                "ammoRegenerationTime%": 162,
+                "ammoRegenerationTime%": 200,
                 "secondaryFireKb%": 0,
                 "ultGen%": percent(OW2_DOOMFIST_ULT_COST/DOOMFIST_ULT_COST)
             },
@@ -172,6 +172,7 @@ settings {
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/MOIRA_HEAL_GRASP_AMMO_USAGE)*(MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
             "orisa": {
+                "ammoClipSize%": 500,
                 "ultGen%": percent(ORISA_ULT_COST/OW2_ORISA_ULT_COST)
             },
             "pharah": {

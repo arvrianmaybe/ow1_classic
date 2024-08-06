@@ -196,6 +196,7 @@ settings {
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/MOIRA_HEAL_GRASP_AMMO_USAGE)*(MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
             "orisa": {
+                "ammoClipSize%": 500,
                 "ultGen%": percent(ORISA_ULT_COST/OW2_ORISA_ULT_COST)
             },
             "pharah": {
