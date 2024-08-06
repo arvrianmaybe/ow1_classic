@@ -49,7 +49,7 @@ rule "[orisa/init.opy]: Clean up Orisa":
 rule"[orisa/init.opy]: Hard code disallow orisa":
     @Event eachPlayer
     @Hero orisa
-    @Condition (eventPlayer.isUsingAbility1() or eventPlayer.isFiringSecondaryFire())
+    @Condition (eventPlayer.isUsingAbility2() or eventPlayer.isFiringSecondaryFire())
     
     eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
