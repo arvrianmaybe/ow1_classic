@@ -18,7 +18,6 @@ rule "[orisa/init.opy]: Initialize Orisa":
     getPlayers(eventPlayer.getTeam()).friendly_orisa_player = eventPlayer
     getPlayers(getOppositeTeam(eventPlayer.getTeam())).enemy_orisa_player = eventPlayer
     
-    wait()
     eventPlayer.disallowButton(Button.ULTIMATE)
     eventPlayer._is_using_supercharger = false
 
@@ -45,3 +44,13 @@ rule "[orisa/init.opy]: Clean up Orisa":
     destroyBarrier()
     endSupercharger()
     hideOrisaAmmoHud()
+
+
+rule"[orisa/init.opy]: Hard code disallow orisa":
+    @Event eachPlayer
+    @Hero orisa
+    @Condition (eventPlayer.isUsingAbility1() or eventPlayer.isUsingAbility2() or eventPlayer.isFiringSecondaryFire())
+    
+    eventPlayer.disallowButton(Button.ABILITY_1)
+    eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
