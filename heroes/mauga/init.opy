@@ -5,7 +5,7 @@ rule "[mauga/init.opy]: Initialize Mauga":
     @Hero mauga
     @Condition eventPlayer._call_init
 
-    setCustomHp(MAUGA_HEALTH, 0, 0)
+    setCustomHp(MAUGA_HEALTH, MAUGA_ARMOR, 0)
     setUltCost(MAUGA_ULT_COST)
 
     removeTankPassive()
