@@ -6,6 +6,7 @@ playervar translocator_pvar
 #!defineMember _translocator_id translocator_pvar[1]
 #!defineMember _translocator_icon_id1 translocator_pvar[2]
 #!defineMember _translocator_icon_id2 translocator_pvar[3]
+#!defineMember _translocator_hud_text_id translocator_pvar[3]
 
 playervar transloc_position
 playervar trasnloc_velocity
@@ -62,6 +63,9 @@ rule "[sombra/translocator.opy]: Bind Ability 2 to translocator":
 
 def destroyTranslocator():
     @Name "[sombra/translocator.opy]: destroyTranslocator()"
+
+    destroyInWorldText(eventPlayer._translocator_hud_text_id)
+    eventPlayer._translocator_hud_text_id = null
 
     stopChasingVariable(eventPlayer.transloc_time)
     stopChasingVariable(eventPlayer.transloc_position)
@@ -158,6 +162,18 @@ def showTranslocator():
     if eventPlayer._translocator_id == null:
         createEffect(getAllPlayers(), Effect.ORB, Color.PURPLE, eventPlayer.transloc_position, 0.1, EffectReeval.POSITION_AND_RADIUS)
         eventPlayer._translocator_id = getLastCreatedEntity()
+
+    # Draw translocator duration
+    if eventPlayer._translocator_hud_text_id == null:
+        createInWorldText(eventPlayer, "{}".format(eventPlayer.transloc_timer),
+        updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.8 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-2 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+        2, 
+        Clip.NONE, 
+        WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
+        Color.WHITE, 
+        SpecVisibility.DEFAULT)
+    eventPlayer._translocator_hud_text_id = getLastCreatedText()
 
 
 def showTranslocatorIcon():

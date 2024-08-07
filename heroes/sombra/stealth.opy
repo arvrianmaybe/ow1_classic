@@ -3,6 +3,10 @@
 playervar stealth_pvar
 #!defineMember _is_using_stealth stealth_pvar [0]
 #!defineMember _stealth_hud_id stealth_pvar [1]
+#!defineMember _stealth_hud_text_id stealth_pvar [2]
+#!defineMember _stealth_hud_progress_id stealth_pvar [2]
+
+playervar stealth_timer
 
 subroutine enterStealth
 subroutine exitStealth
@@ -81,6 +85,11 @@ def exitStealth():
 
     destroyEffect(eventPlayer._stealth_hud_id)
     eventPlayer._stealth_hud_id = null
+    
+    destroyInWorldText(eventPlayer._stealth_hud_text_id)
+    eventPlayer._stealth_hud_text_id = null
+
+    stopChasingVariable(eventPlayer.stealth_timer)
 
     damage(eventPlayer, null, 0.01)
     heal(eventPlayer, null, 0.01)
@@ -96,6 +105,20 @@ def exitStealth():
 def showStealthHud():
     @Name "[sombra/stealth.opy]: showStealthHud()"
 
+    eventPlayer.stealth_timer = OW2_SOMBRA_STEALTH_COOLDOWN
+    chase(eventPlayer.stealth_timer, 0, rate=1, ChaseReeval.DESTINATION_AND_RATE)
+    
     if eventPlayer._stealth_hud_id == null:
         createEffect(eventPlayer, Effect.SPHERE, rgb(100, 68, 179), eventPlayer, 1, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
         eventPlayer._stealth_hud_id = getLastCreatedEntity()
+
+    if eventPlayer._stealth_hud_text_id == null:
+        createInWorldText(eventPlayer, "INVISIBLE {0}".format(eventPlayer.stealth_timer),
+        updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-2 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+        1.5, 
+        Clip.NONE, 
+        WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
+        Color.WHITE, 
+        SpecVisibility.DEFAULT)
+    eventPlayer._stealth_hud_text_id = getLastCreatedText()
