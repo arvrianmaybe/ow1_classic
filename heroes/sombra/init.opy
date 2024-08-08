@@ -33,10 +33,10 @@ rule "[sombra/init.opy]: Clean up Sombra":
     exitStealth()
     destroyTranslocator()
 
-rule"[sombra/init.opy]: Hard code disallow sombra":
-    @Event eachPlayer
-    @Hero sombra
-    @Condition (eventPlayer.isUsingAbility1() or eventPlayer.isUsingAbility2())
+# rule"[sombra/init.opy]: Hard code disallow sombra":
+    # @Event eachPlayer
+    # @Hero sombra
+    # @Condition (eventPlayer.isUsingAbility1() or eventPlayer.isUsingAbility2())
     
-    eventPlayer.disallowButton(Button.ABILITY_1)
-    eventPlayer.disallowButton(Button.ABILITY_2)
+    # eventPlayer.disallowButton(Button.ABILITY_1)
+    # eventPlayer.disallowButton(Button.ABILITY_2)
