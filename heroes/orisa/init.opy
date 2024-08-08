@@ -46,10 +46,10 @@ rule "[orisa/init.opy]: Clean up Orisa":
     hideOrisaAmmoHud()
 
 
-rule"[orisa/init.opy]: Hard code disallow orisa":
-    @Event eachPlayer
-    @Hero orisa
-    @Condition (eventPlayer.isUsingAbility2() or eventPlayer.isFiringSecondaryFire())
+# rule"[orisa/init.opy]: Hard code disallow orisa":
+    # @Event eachPlayer
+    # @Hero orisa
+    # @Condition (eventPlayer.isUsingAbility2() or eventPlayer.isFiringSecondaryFire())
     
-    eventPlayer.disallowButton(Button.ABILITY_2)
-    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    # eventPlayer.disallowButton(Button.ABILITY_2)
+    # eventPlayer.disallowButton(Button.SECONDARY_FIRE)
