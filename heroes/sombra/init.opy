@@ -9,6 +9,7 @@
 rule "[sombra/init.opy]: Initialize Sombra":
     @Event eachPlayer
     @Hero sombra
+    @Condition eventPlayer._call_init
 
     setCustomHp(SOMBRA_HEALTH, 0, 0)
     setUltCost(SOMBRA_ULT_COST)
