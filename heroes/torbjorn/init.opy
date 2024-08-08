@@ -29,7 +29,7 @@ rule "[torbjorn/init.opy]: Initialize Torbjorn":
         SpecVisibility.DEFAULT)
     eventPlayer._scrap_hud = getLastCreatedText()
 
-    eventPlayer.turret_level = 1
+    eventPlayer.turret_level = TORBJORN_TURRET_DEFAULT
 
     eventPlayer._call_init = false
 

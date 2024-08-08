@@ -52,6 +52,13 @@ rule "[torbjorn/turret.opy]: set turret if using it":
     restartTurretProgress()
     restartTurret()
 
+rule "[torbjorn/turret.opy]: reset turret":
+    @Event eachPlayer
+    @Hero torbjorn
+    @Condition not eventPlayer.isUsingAbility1()
+
+    restartTurretProgress()
+
 
 rule "[torbjorn/turret.opy]: build turret":
     @Event eachPlayer

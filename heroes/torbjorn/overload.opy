@@ -35,6 +35,7 @@ def startOverload():
     eventPlayer._overload_enabled = true
 
     if eventPlayer.isUsingAbility1():
+        eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
         restartTurret()
         eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
 
