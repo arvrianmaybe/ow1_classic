@@ -22,15 +22,14 @@ subroutine resetUltCharge
 subroutine resetSelfHealing
 
 #!define resetHero()\
-    wait() # wait for a single tick \
-    clearCustomHp()\
-    resetStats()\
-    resetStatuses()\
-    resetFrenemies()\
-    resetUltCharge()\
-    resetSelfHealing()\
-    enableAllAbilities()\
-
+    wait() # wait a single tick \
+    async(clearCustomHp, AsyncBehavior.RESTART) \
+    async(resetStats, AsyncBehavior.RESTART) \
+    async(resetStatuses, AsyncBehavior.RESTART) \
+    async(resetFrenemies, AsyncBehavior.RESTART) \
+    async(resetUltCharge, AsyncBehavior.RESTART) \
+    async(resetSelfHealing, AsyncBehavior.RESTART) \
+    async(enableAllAbilities, AsyncBehavior.RESTART) \
 
 def enableAllAbilities():
     @Name "[utilities/reset.opy]: enableAllAbilities()"
