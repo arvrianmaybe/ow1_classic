@@ -22,6 +22,7 @@ subroutine resetUltCharge
 subroutine resetSelfHealing
 
 #!define resetHero()\
+    wait() # wait for a single tick \
     clearCustomHp()\
     resetStats()\
     resetStatuses()\
