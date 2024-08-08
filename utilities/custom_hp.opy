@@ -12,7 +12,6 @@ playervar custom_hp_pvar
 #!define HP_ROUNDING_ERROR_MARGIN 0.01
 #!define MAX_HP_ITER_COUNT 10
 
-subroutine clearCustomHp
 subroutine applyCustomHp
 
 # setCustomHp(0, 0, 0) simply clears the hero's hp
@@ -26,9 +25,8 @@ subroutine applyCustomHp
 def clearCustomHp():
     @Name "[utilities/custom_hp.opy]: clearCustomHp()"
 
+
     eventPlayer.removeAllHealthPools()
-    wait()
-    eventPlayer.setMaxHealth(100.001)
     wait()
     eventPlayer.setMaxHealth(100)
 
@@ -61,7 +59,6 @@ def applyCustomHp():
 
         eventPlayer.removeAllHealthPools()
 
-        # wait(0.064)
         wait()
         waitUntil(eventPlayer.getMaxHealth() <= MIN_HP, 1)
 
@@ -78,16 +75,3 @@ def applyCustomHp():
 
         wait()
         eventPlayer._hp_iter_count += 1
-
-
-# rule "[custom_hp.opy]: Remove Custom Health Conditions":
-#     @Event eachPlayer
-
-#     # Health pools persist between hero switching, so we remove it when player's switch or duplicate to another hero, or when D.Va switches between forms.
-#     waitUntil(eventPlayer.getCurrentHero() != evalOnce(eventPlayer.getCurrentHero()) or eventPlayer.getHeroOfDuplication() != evalOnce(eventPlayer.getHeroOfDuplication()) or (isHero(eventPlayer, Hero.DVA) and eventPlayer.isInAlternateForm() != evalOnce(eventPlayer.isInAlternateForm())), Math.INFINITY)
-
-#     clearCustomHp()
-
-#     wait()
-
-#     if RULE_CONDITION: goto RULE_START
