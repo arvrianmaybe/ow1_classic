@@ -30,13 +30,13 @@
                                DISCORD_LONG_LINK + "\n" + \
                                "\n" + \
                                "Source code:" + "\n" + \
-                               "https://github.com/arvrianmaybe/ow1_classic")
+                               "https://github.com/arvrianmaybe/classic")
 #!define GAMEMODE_CODE "NC336"
 #!define STAGING_CODE "nothing"
 #!define DISCORD_SHORT_LINK "dsc.gg/runece"
 #!define DISCORD_LONG_LINK "discord.gg/vb5r2gfNTQ"
 
-rule "Copyright (c) 2024 Overwatch 1 Classic. See https://github.com/arvrianmaybe/ow1_classic for license to use this code.":
+rule "Copyright (c) 2024 Overwatch 1 Classic. See https://github.com/arvrianmaybe/classic for license to use this code.":
     # this code has been forked by overwatch 1 emulator, please also check theres https://github.com/Overwatch-1-Emulator/ow1-emulator
     disableInspector()
 
@@ -172,7 +172,7 @@ settings {
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/MOIRA_HEAL_GRASP_AMMO_USAGE)*(MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
             "orisa": {
-                "ammoClipSize%": 500,
+                "ammoClipSize%": percent(ORISA_CLIP_SIZE/OW2_ORISA_CLIP_SIZE),
                 "ultGen%": percent(ORISA_ULT_COST/OW2_ORISA_ULT_COST)
             },
             "pharah": {
@@ -215,6 +215,7 @@ settings {
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/SOLDIER_ULT_COST)
             },
             "sombra": {
+                "health%": percent(SOMBRA_HEALTH/OW2_SOMBRA_HEALTH),
                 "secondaryFireCooldown%": percent(SOMBRA_HACK_COOLDOWN_TIME/OW2_SOMBRA_HACK_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_SOMBRA_ULT_COST/SOMBRA_ULT_COST)
             },

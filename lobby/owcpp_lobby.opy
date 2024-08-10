@@ -196,7 +196,7 @@ settings {
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/MOIRA_HEAL_GRASP_AMMO_USAGE)*(MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
             "orisa": {
-                "ammoClipSize%": 500,
+                "ammoClipSize%": percent(ORISA_CLIP_SIZE/OW2_ORISA_CLIP_SIZE),
                 "ultGen%": percent(ORISA_ULT_COST/OW2_ORISA_ULT_COST)
             },
             "pharah": {
@@ -240,6 +240,7 @@ settings {
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/SOLDIER_ULT_COST)
             },
             "sombra": {
+                "health%": percent(SOMBRA_HEALTH/OW2_SOMBRA_HEALTH),
                 "secondaryFireCooldown%": percent(SOMBRA_HACK_COOLDOWN_TIME/OW2_SOMBRA_HACK_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_SOMBRA_ULT_COST/SOMBRA_ULT_COST)
             },
