@@ -50,7 +50,7 @@ subroutine updateBarrierVisual
                                    eventPlayer._barrier_seed_v0.z)
 
 #!define getBarrierPosition(t) vect(eventPlayer._barrier_seed_v0.x * eventPlayer.barrier_seed_t + eventPlayer._barrier_seed_p0.x, \
-                                   -8/2 * (eventPlayer.barrier_seed_t ** 2) + eventPlayer._barrier_seed_v0.y * eventPlayer.barrier_seed_t + eventPlayer._barrier_seed_p0.y, \
+                                   -6/2 * (eventPlayer.barrier_seed_t ** 2) + eventPlayer._barrier_seed_v0.y * eventPlayer.barrier_seed_t + eventPlayer._barrier_seed_p0.y, \
                                    eventPlayer._barrier_seed_v0.z * eventPlayer.barrier_seed_t + eventPlayer._barrier_seed_p0.z)
 
 #!define isInsideOrisaBarrier(point, center, direction)\
