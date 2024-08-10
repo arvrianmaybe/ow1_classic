@@ -1,7 +1,7 @@
 #!mainFile "../owcpp_main.opy"
 
 # Environment Variables
-#!define GAMEMODE_VERSION "v1"
+#!define GAMEMODE_VERSION "Internal Build"
 #!define GAMEMODE_NAME "Overwatch 1++ Classic"
 #!define GAMEMODE_DESCRIPTION (GAMEMODE_NAME + " " + GAMEMODE_VERSION + "\n" + \
                                "\n" + \

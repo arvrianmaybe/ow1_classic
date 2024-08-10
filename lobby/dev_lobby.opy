@@ -4,7 +4,7 @@
 #!include "constant/ow2_constant.opy"
 
 # Environment Variables
-#!define GAMEMODE_VERSION "Developer Build"
+#!define GAMEMODE_VERSION "Internal Developer Build"
 #!define GAMEMODE_NAME "Overwatch 1++ Classic"
 #!define GAMEMODE_DESCRIPTION (GAMEMODE_NAME + " " + GAMEMODE_VERSION + "\n" + \
                                "\n" + \
