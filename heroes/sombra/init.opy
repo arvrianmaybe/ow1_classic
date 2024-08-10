@@ -11,7 +11,7 @@ rule "[sombra/init.opy]: Initialize Sombra":
     @Hero sombra
     @Condition eventPlayer._call_init
 
-    setCustomHp(SOMBRA_HEALTH, 0, 0)
+    # setCustomHp(SOMBRA_HEALTH, 0, 0)
     setUltCost(SOMBRA_ULT_COST)
 
     getPlayers(eventPlayer.getTeam()).friendly_sombra_player = eventPlayer

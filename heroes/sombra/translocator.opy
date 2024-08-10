@@ -165,7 +165,7 @@ def showTranslocator():
 
     # Draw translocator duration
     if eventPlayer._translocator_hud_text_id == null:
-        createInWorldText(eventPlayer, "{}".format(eventPlayer.transloc_timer),
+        createInWorldText(eventPlayer, "{}".format(round(eventPlayer.transloc_timer)),
         updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.8 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-2 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
         verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
         2, 

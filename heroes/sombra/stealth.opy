@@ -113,7 +113,7 @@ def showStealthHud():
         eventPlayer._stealth_hud_id = getLastCreatedEntity()
 
     if eventPlayer._stealth_hud_text_id == null:
-        createInWorldText(eventPlayer, "INVISIBLE {0}".format(eventPlayer.stealth_timer),
+        createInWorldText(eventPlayer, "INVISIBLE {0}".format(round(eventPlayer.stealth_timer)),
         updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-2 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
         verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
         1.5, 
