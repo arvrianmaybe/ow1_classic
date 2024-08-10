@@ -1,7 +1,5 @@
 #!mainFile "../dev_main.opy"
 
-#!include "utilities/custom_hp.opy"
-
 globalvar reset_gvar
 #!defineMember ready_color reset_gvar[0]
 
@@ -13,6 +11,7 @@ playervar reset_pvar
 #!defineMember enemy_sombra_player reset_pvar[6]
 #!defineMember _hero_setup reset_pvar[7]
 
+subroutine clearCustomHp
 subroutine enableAllAbilities
 subroutine disableAllAbilities
 subroutine resetStats
@@ -20,16 +19,19 @@ subroutine resetStatuses
 subroutine resetFrenemies
 subroutine resetUltCharge
 subroutine resetSelfHealing
+subroutine resetHero
 
-#!define resetHero()\
-    wait() # wait a single tick \
-    async(clearCustomHp, AsyncBehavior.RESTART) \
-    async(resetStats, AsyncBehavior.RESTART) \
-    async(resetStatuses, AsyncBehavior.RESTART) \
-    async(resetFrenemies, AsyncBehavior.RESTART) \
-    async(resetUltCharge, AsyncBehavior.RESTART) \
-    async(resetSelfHealing, AsyncBehavior.RESTART) \
-    async(enableAllAbilities, AsyncBehavior.RESTART) \
+def resetHero():
+    @Name "[utilities/reset.opy]: resetHero()"
+    
+    wait() # wait a single tick 
+    clearCustomHp() 
+    resetStats() 
+    resetStatuses() 
+    resetFrenemies() 
+    resetUltCharge() 
+    resetSelfHealing() 
+    enableAllAbilities()
 
 def enableAllAbilities():
     @Name "[utilities/reset.opy]: enableAllAbilities()"
