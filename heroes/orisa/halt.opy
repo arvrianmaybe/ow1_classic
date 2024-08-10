@@ -5,7 +5,7 @@ playervar halt_pvar
 #!defineMember _is_snared halt_pvar[1]
 #!defineMember _halt_victims halt_pvar[2]
 #!defineMember _halt_orb_id halt_pvar[3]
-#!defineMember _halt_orb_id1 halt_pvar[4]
+# #!defineMember _halt_orb_id1 halt_pvar[4]
 #!defineMember _halt_snare_line_id halt_pvar[5]
 playervar position
 
@@ -48,11 +48,8 @@ def shootHalt():
 
     # Halt orb visuals
     if (eventPlayer._halt_orb_id == null):
-        createEffect(getAllPlayers(), Effect.SPHERE, Color.LIME_GREEN, eventPlayer.halt_position, ORISA_HALT_PROJECTILE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+        createEffect(getAllPlayers(), Effect.SPHERE, Color.LIME_GREEN, eventPlayer.halt_position, 1*ORISA_HALT_PROJECTILE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
         eventPlayer._halt_orb_id = getLastCreatedEntity()
-    if (eventPlayer._halt_orb_id1 == null):
-        createEffect(getAllPlayers(), Effect.SPHERE, Color.LIME_GREEN, eventPlayer.halt_position, 0.5*ORISA_HALT_PROJECTILE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
-        eventPlayer._halt_orb_id1 = getLastCreatedEntity()
 
     # Halt orb sounds
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION_SOUND, Color.LIME_GREEN, eventPlayer, 100)
@@ -86,8 +83,6 @@ def explodeHalt():
     # Clear visuals
     destroyEffect(eventPlayer._halt_orb_id)
     eventPlayer._halt_orb_id = null
-    destroyEffect(eventPlayer._halt_orb_id1)
-    eventPlayer._halt_orb_id1 = null
 
     eventPlayer._is_using_halt = false
 
