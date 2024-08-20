@@ -36,3 +36,5 @@ rule "[zarya/init.opy]: Compensate zarya global damage reduction":
     @Condition eventAbility in [Button.SECONDARY_FIRE, Button.ULTIMATE]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+

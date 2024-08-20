@@ -68,7 +68,7 @@ rule "[torbjorn/turret.opy]: build turret":
     @Condition eventPlayer.turret_level < TORBJORN_TURRET_LEVEL_ULTIMATE
     @Condition (eventPlayer.turret_level < TOBRJORN_TURRET_LEVEL or eventPlayer.isUsingAbility2())
     
-    wait(0.016 if eventPlayer.isUsingAbility2() else 0.016, Wait.ABORT_WHEN_FALSE)
+    wait(TICK_DURATION if eventPlayer.isUsingAbility2() else TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     waitUntil(distance(eventPlayer.getPosition(), eventPlayer.turret_position) < TOBRJORN_TURRET_LEVEL and eventPlayer.isInViewAngle(eventPlayer.turret_position, 40), 0.192)
     if distance(eventPlayer.getPosition(), eventPlayer.turret_position) < TOBRJORN_TURRET_LEVEL and eventPlayer.isInViewAngle(eventPlayer.turret_position, 40):
         eventPlayer.turret_progress += TORBJORN_TURRET_UPGRADE_HIT

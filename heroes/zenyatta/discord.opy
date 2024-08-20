@@ -13,7 +13,7 @@ rule "[zenyatta/discord.opy]: damage victim.":
     @Event eachPlayer
     @Condition eventPlayer.discord_orb_damage
 
-    eventPlayer.setDamageReceived(120) # I have no idea where do you get that number but it is correct?
+    eventPlayer.setDamageReceived(85) # I have no idea where do you get that number but it is correct?
     waitUntil(not getPlayersOnHero(Hero.ZENYATTA, getOppositeTeam(eventPlayer.getTeam())).isUsingAbility2(), Math.INFINITY)
     eventPlayer.discord_orb_damage = false
     eventPlayer.setDamageReceived(100)
