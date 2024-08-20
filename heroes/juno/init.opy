@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[junkrat/init.opy]: Initialize Junkrat":
+rule "[junkrat/init.opy]: Initialize Juno":
     @Event eachPlayer
     @Hero juno
     @Condition eventPlayer._call_init
@@ -9,6 +9,7 @@ rule "[junkrat/init.opy]: Initialize Junkrat":
     removeSelfHealing()
 
     eventPlayer.setMaxAmmo(0, 150)
+    eventPlayer.setAmmo(0, 150)
     
     setBaseDamage(eventPlayer, 0.9)
     setBaseHealing(eventPlayer, 0.85)
