@@ -5,6 +5,7 @@ rule "[junkrat/init.opy]: Initialize Juno":
     @Hero juno
     @Condition eventPlayer._call_init
 
+    setCustomHp(JUNO_HEALTH, 0, JUNO_SHIELD_HEALTH)
     setUltCost(JUNO_ULT_COST)
     removeSelfHealing()
 
