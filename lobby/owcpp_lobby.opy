@@ -54,7 +54,9 @@ settings {
     "gamemodes": {
         "assault": {
             "disabledMaps": [
-                "hanamuraWinter"
+                "hanamuraWinter",
+                "hanamura",
+                "templeOfAnubis"
             ],
             "enableCompetitiveRules": true
         },
@@ -80,6 +82,9 @@ settings {
                 "hollywoodHalloween",
                 "kingsRowWinter"
             ],
+            "enableCompetitiveRules": true
+        },
+        "clash": {
             "enableCompetitiveRules": true
         },
         "general": {
