@@ -11,6 +11,7 @@ rule "[ramattra/init.opy]: Initialize Ramattra":
     setCustomHp(RAMATTRA_HEALTH, RAMATTRA_ARMOR, 0)
     setUltCost(RAMATTRA_ULT_COST)
 
+    stopChasingVariable(eventPlayer.ult_duration)
     removeTankPassive()
     removeSelfHealing()
     eventPlayer._call_init = false

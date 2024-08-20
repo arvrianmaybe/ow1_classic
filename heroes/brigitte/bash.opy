@@ -19,7 +19,6 @@ rule "[brigitte/bash.opy]: Reduce shield bash distance":
     @Condition eventPlayer.isFiringSecondaryFire()
     @Condition eventPlayer.isFiringPrimaryFire()
     @Condition not eventPlayer.isUsingUltimate()
-    @Condition not eventPlayer.fake_rally
     
     eventPlayer.setMoveSpeed(77.8) # arbitrarily decided based on trial and error
     waitUntil(eventPlayer.getAbilityCooldown(Button.PRIMARY_FIRE) > 0, Math.INFINITY)

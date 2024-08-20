@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-globalvar ULT_DURATION_WORKSHOP_SETTINGS = createWorkshopSetting(int[1:20], "Ramattra", "Annihilation duration", 4, 0)
+globalvar ULT_DURATION_WORKSHOP_SETTINGS = createWorkshopSetting(int[1:10], "Ramattra", "Annihilation duration", 4, 0)
 globalvar ULT_DURATION_MAX = ULT_DURATION_WORKSHOP_SETTINGS 
 
 playervar ult_duration 
@@ -37,13 +37,9 @@ rule "[ramattra/annihilation.opy]: dealt dmg stop chase variables":
     @Event playerDealtDamage
     @Hero ramattra
     @Condition eventAbility == Button.ULTIMATE
-    @Condition eventAbility != Button.PRIMARY_FIRE
-    @Condition eventAbility != Button.ABILITY_2
-    @Condition eventAbility != Button.MELEE
-    @Condition eventAbility != null
     
     stopChasingVariable(eventPlayer.ult_duration)
-    wait(TICK_DURATION, Wait.RESTART_WHEN_TRUE)
+    wait(0.25, Wait.RESTART_WHEN_TRUE)
     chase(eventPlayer.ult_duration, 0, rate=1, ChaseReeval.DESTINATION_AND_RATE)
 
 

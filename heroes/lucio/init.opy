@@ -21,16 +21,9 @@ rule "[lucio/init.opy]: Initialize Lucio":
 
     createInWorldText(getPlayersOnHero(Hero.LUCIO, Team.ALL), "{0}".format(len([i for i in localPlayer.cross_fade_stats[4] if i.isAlive()].exclude(localPlayer))), updateEveryTick(localPlayer.getEyePosition() + (150 * (0 * worldVector(Vector.RIGHT, localPlayer, Transform.ROTATION) + (-0.3 * (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, Color.WHITE, SpecVisibility.DEFAULT)
 
+    setBaseDamage(eventPlayer, LUCIO_SOUND_GUN_DAMAGE/OW2_LUCIO_SOUND_GUN_DAMAGE)
     eventPlayer.setKnockbackDealt(percent(LUCIO_SOUNDWAVE_KNOCKBACK/OW2_LUCIO_SOUNDWAVE_KNOCKBACK))
     eventPlayer._call_init = false
-
-
-rule "[lucio/init.opy]: OW1 Sonic Amplifier damage":
-    @Event playerDealtDamage
-    @Hero lucio
-    @Condition eventAbility == Button.PRIMARY_FIRE
-
-    damage(victim, attacker, eventDamage*(LUCIO_SOUND_GUN_DAMAGE/OW2_LUCIO_SOUND_GUN_DAMAGE) - eventDamage)
 
 rule "[lucio/init.opy]: Clean up Lucio":
     @Event eachPlayer

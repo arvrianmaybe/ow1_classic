@@ -5,7 +5,8 @@ rule "[lucio/soundwave.opy]: OW1 Soundwave damage":
     @Hero lucio
     @Condition eventAbility == Button.SECONDARY_FIRE
     
-    heal(victim, null, eventDamage - eventDamage*(LUCIO_SOUNDWAVE_DAMAGE/OW2_LUCIO_SOUNDWAVE_DAMAGE))
+    heal(victim, null, eventDamage)
+    damage(victim, attacker, LUCIO_SOUNDWAVE_DAMAGE)
 
 rule "[lucio/soundwave.opy]: consume soundwave ammo":
     @Event eachPlayer

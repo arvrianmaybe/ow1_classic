@@ -20,5 +20,3 @@ rule "[bastion/recon.opy]: Initialize recon mode":
 
     eventPlayer.clearStatusEffect(Status.ROOTED)
     eventPlayer.setKnockbackReceived(100)
-
-    stopFiring()
