@@ -245,6 +245,12 @@ globalvar DOOMFIST_SEISMIC_SLAM_RADIUS = createWorkshopSetting(float[0:30], 'Doo
 #!define JUNKRAT_BOMB_RADIUS 3
 #!define JUNKRAT_ULT_COST 2200
 
+# Juno
+#!define JUNO_HEALTH 50
+#!define JUNO_SHIELD_HEALTH 175
+#!define JUNO_MEDIBLASTER_DAMAGE 100
+#!define JUNO_ULT_COST 1850
+
 # Kiriko
 #!define KIRIKO_HEALTH 200
 #!define KIRIKO_KUNAI_DAMAGE 50
