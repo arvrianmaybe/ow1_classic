@@ -13,8 +13,5 @@ rule "[mei/init.opy]: Initialize Mei":
 
     setBaseDamage(eventPlayer, MEI_ICICLE_DAMAGE/OW2_MEI_ICICLE_DAMAGE)
 
-    eventPlayer.setAmmo(0, MEI_CLIP_SIZE)
-    eventPlayer.setMaxAmmo(0, MEI_CLIP_SIZE)
-
     removeSelfHealing()
     eventPlayer._call_init = false

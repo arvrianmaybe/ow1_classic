@@ -1,4 +1,4 @@
-#!mainFile "../../main.opy"
+#!mainFile "../../dev_main.opy"
 
 playervar is_using_guardian_angel
 playervar is_slingshotting
@@ -46,7 +46,7 @@ rule "[mercy/guardian.opy]: Activate GA slingshot":
 rule "[mercy/guardian.opy]: Apply upwards momentum when starting slingshot":
     @Event eachPlayer
     @Hero mercy
-    @Condition eventPlayer.is_slingshotting == true
+    @Condition eventPlayer.is_slingshotting
 
     eventPlayer.applyImpulse(Vector.UP, 
                              JUMP_SPEED , 
@@ -71,7 +71,7 @@ rule "[mercy/guardian.opy]: Give speed boost during slingshot":
 rule "[mercy/guardian.opy]: Force angelic descent during slingshot":
     @Event eachPlayer
     @Hero mercy
-    @Condition eventPlayer.is_slingshotting == true
+    @Condition eventPlayer.is_slingshotting
     
     eventPlayer.allowButton(Button.JUMP)
     eventPlayer.startForcingButton(Button.JUMP)
@@ -82,7 +82,7 @@ rule "[mercy/guardian.opy]: Force angelic descent during slingshot":
 rule "[mercy/guardian.opy]: Slingshot GA cooldown logic":
     @Event eachPlayer
     @Hero mercy
-    @Condition eventPlayer.is_slingshotting == true
+    @Condition eventPlayer.is_slingshotting
 
     eventPlayer.setAbility1Enabled(false)
     waitUntil(not eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isOnGround(), Math.INFINITY)
