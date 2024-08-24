@@ -1,15 +1,5 @@
 #!mainFile "../../dev_main.opy"
-
-rule "[kiriko/suzu.opy]: Cleanse out hard stun effects":
-    @Event eachPlayer
-    @Condition eventPlayer.hasStatusEffect(Status.KNOCKED_DOWN)
-
-    eventPlayer.clearStatusEffect(Status.KNOCKED_DOWN)
-    wait(KIRIKO_KNOCKED_DOWN_DURATION)
-    if eventPlayer.hasStatusEffect(Status.PHASED_OUT):
-        eventPlayer.setStatusEffect(null, Status.PHASED_OUT, KIRIKO_SUZU_DURATION)
     
-
 rule "[kiriko/suzu.opy]: Remove initial burst healing from suzu":
     @Event eachPlayer
     @Hero kiriko

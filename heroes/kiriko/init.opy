@@ -1,7 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "heroes/kiriko/kunai.opy"
-##!include "heroes/kiriko/swift_step.opy"
+#!include "heroes/kiriko/swift_step.opy"
 #!include "heroes/kiriko/suzu.opy"
 
 rule "[kiriko/init.opy]: Initialize Kiriko":
@@ -11,7 +11,7 @@ rule "[kiriko/init.opy]: Initialize Kiriko":
 
     setCustomHp(KIRIKO_HEALTH, 0, 0)
     setUltCost(KIRIKO_ULT_COST)
-    removePassiveHealing()
+    removeSelfHealing()
 
     eventPlayer.setHealingDealt(percent(KIRKIO_OFUDA_HEALING/OW2_KIRIKO_OFUDA_HEALING))
     setBaseDamage(eventPlayer, (KIRIKO_KUNAI_HEADSHOT_DAMAGE/OW2_KIRIKO_KUNAI_HEADSHOT_DAMAGE))

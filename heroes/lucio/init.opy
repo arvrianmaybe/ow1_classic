@@ -9,7 +9,7 @@ rule "[lucio/init.opy]: Initialize Lucio":
     @Hero lucio
     @Condition eventPlayer._call_init
 
-    
+    clearCustomHp() # this for some reason is needed?? thjanks wade
     setCustomHp(LUCIO_HEALTH, 0, 0)
     setUltCost(LUCIO_ULT_COST)
     removeSelfHealing()
