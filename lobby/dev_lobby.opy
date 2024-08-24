@@ -4,7 +4,7 @@
 #!include "constant/ow2_constant.opy"
 
 # Environment Variables
-#!define GAMEMODE_VERSION "Internal Developer Build"
+#!define GAMEMODE_VERSION "Internal Build"
 #!define GAMEMODE_NAME "Overwatch 1++ Classic"
 #!define GAMEMODE_DESCRIPTION (GAMEMODE_NAME + " " + GAMEMODE_VERSION + "\n" + \
                                "\n" + \
@@ -159,8 +159,8 @@ settings {
                 "ultGen%": percent(OW2_MEI_ULT_COST/MEI_ULT_COST)
             },
             "mercy": {
-                "ability1Cooldown%": 33.33,
-                "ultGen%": percent(OW2_MERCY_ULT_COST/MERCY_ULT_COST),
+                "ability1Cooldown%": percent(MERCY_GUARDIAN_ANGEL_COOLDOWN/OW2_MERCY_GUARDIAN_ANGEL_COOLDOWN),
+                "ultGen%": percent(MERCY_ULT_COST/OW2_MERCY_ULT_COST),
                 "enablePassive": false
             },
             "mauga": {
