@@ -17,7 +17,7 @@ playervar orb_pos
 
 rule "[reaper/reaping.opy]: if orb collected remove.":
     @Event eachPlayer
-    @Condition eventPlayer._orb_collected == true
+    @Condition eventPlayer._orb_collected
     
     soulOrbCollected()
 
@@ -35,7 +35,7 @@ rule "[reaper/reaping.opy]: collect orb":
     @Hero reaper
     @Condition getNumberOfDeadPlayers(getOppositeTeam(eventPlayer.getTeam())) > 0
     @Condition (distance(eventPlayer.getPosition(), ((sorted([player for player in getDeadPlayers(Team.ALL) if not player._orb_collected]))[0]).getPosition())) < 1.5
-    @Condition any([player._orb_collected != true for player in getPlayers(getOppositeTeam(eventPlayer.getTeam()))]) == true
+    @Condition any([player._orb_collected != true for player in getPlayers(getOppositeTeam(eventPlayer.getTeam()))])
     @Condition eventPlayer.getNormalizedHealth() < 1
     
     sorted(getDeadPlayers(getOppositeTeam(eventPlayer.getTeam())), lambda player: distance(eventPlayer.getPosition(), player.getPosition()))[0]._orb_collected = true
@@ -47,10 +47,10 @@ rule "[reaper/reaping.opy]: collect orb":
 
 rule "[reaper/reaping.opy]: orb collected":
     @Event eachPlayer
-    @Condition eventPlayer._orb_collected == true
-    @Condition eventPlayer.isDead() == true
+    @Condition eventPlayer._orb_collected
+    @Condition eventPlayer.isDead()
     
-    wait(0.016, Wait.ABORT_WHEN_FALSE)
+    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     soulOrbCollected()
     eventPlayer.stopForcingPosition()
     eventPlayer.teleport(vect(0, -500, 0))
@@ -58,12 +58,12 @@ rule "[reaper/reaping.opy]: orb collected":
 
 rule "[reaper/reaping.opy]: follow players":
     @Event eachPlayer
-    @Condition eventPlayer.isDead() == true
-    @Condition eventPlayer._orb_collected != true
+    @Condition eventPlayer.isDead()
+    @Condition eventPlayer._orb_collected
     @Condition getNumberOfHeroes(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())) > 0
-    @Condition (any([player.isAlive() and distance(eventPlayer.getPosition(), player.getPosition()) < 5 and player.getNormalizedHealth() < 1 for player in getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam()))])) == true
+    @Condition (any([player.isAlive() and distance(eventPlayer.getPosition(), player.getPosition()) < 5 and player.getNormalizedHealth() < 1 for player in getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam()))]))
     
-    wait(0.016, Wait.ABORT_WHEN_FALSE)
+    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     eventPlayer.orb_pos = eventPlayer.getPosition()
     eventPlayer.startForcingPosition(eventPlayer.orb_pos, true)
     chase(eventPlayer.orb_pos, ((sorted([player for player in getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())) if player.isAlive() and player.getNormalizedHealth() < 1], lambda i: distance(eventPlayer.getPosition(), i.getPosition())))[0]).getPosition(), rate=8, ChaseReeval.DESTINATION_AND_RATE)
@@ -71,7 +71,7 @@ rule "[reaper/reaping.opy]: follow players":
 
 rule "[reaper/reaping.opy]: stop following":
     @Event eachPlayer
-    @Condition (eventPlayer._orb_collected != true or eventPlayer.isAlive()) == true
+    @Condition (eventPlayer._orb_collected != true or eventPlayer.isAlive())
     @Condition (any([player.isAlive() and distance(eventPlayer.getPosition(), player.getPosition()) < 5 and player.getNormalizedHealth() < 1 for player in getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam()))]) or eventPlayer.isAlive()) == false
     
     eventPlayer.stopForcingPosition()

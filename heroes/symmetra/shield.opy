@@ -5,6 +5,7 @@ playervar shield_pvar
 #!defineMember _shield shield_pvar [0]
 #!defineMember _shield_target shield_pvar [1]
 #!defineMember _is_shielded shield_pvar [2]
+#!defineMember _shield_visual_effect shield_pvar [3]
 
 rule "[symmetra/_shield.opy]: set symmetras _shield":
     @Event eachPlayer

@@ -3,6 +3,8 @@
 playervar overload_pvar
 #!defineMember _overload_enabled overload_pvar [0]
 #!defineMember _torbjorn_hp overload_pvar [1]
+#!defineMember _torbjorn_overload_health overload_pvar [2]
+#!defineMember _torbjorn_overload_armor overload_pvar [3]
 
 subroutine startOverload
 subroutine endOverload
@@ -32,12 +34,12 @@ def startOverload():
     wait() # Do not remove?? this wont reset the hp if you dont remove it for SOME reason
     setCustomHp(TORBJORN_HEALTH, 0, 0)
 
-    eventPlayer._overload_enabled = true
+    eventPlayer.addHealthPool(Health.ARMOR, TORBJORN_OVERLOAD_ARMOR, true, false) # Apply Overload healthpool
+    eventPlayer._torbjorn_overload_health = getLastCreatedHealthPool()
+    eventPlayer.addHealthPool(Health.ARMOR, TORBJORN_OVERLOAD_HEALTH, true, false) # Apply Overload healthpool
+    eventPlayer._torbjorn_overload_armor = getLastCreatedHealthPool()
 
-    if eventPlayer.isUsingAbility1():
-        eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
-        restartTurret()
-        eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
+    eventPlayer._overload_enabled = true
 
 def endOverload():
     @Name "[torbjorn/overload.opy]: endOverload()"
@@ -50,6 +52,8 @@ def endOverload():
 
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, 0)
     eventPlayer.setUltCharge(0)
+    removeHealthPool(eventPlayer._torbjorn_overload_health)
+    removeHealthPool(eventPlayer._torbjorn_overload_armor)
 
     eventPlayer._overload_enabled = false
 

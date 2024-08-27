@@ -39,6 +39,8 @@ rule "[torbjorn/init.opy]: Clean up Torbjorn":
     @Condition eventPlayer.getCurrentHero() == Hero.TORBJORN
 
     waitUntil(eventPlayer.getCurrentHero() != Hero.TORBJORN, Math.INFINITY)
+    removeHealthPool(eventPlayer._torbjorn_overload_health)
+    removeHealthPool(eventPlayer._torbjorn_overload_armor)
     destroyProgressBarHud(eventPlayer._scrap_hud)
     eventPlayer.turret_level = 1
     eventPlayer._scrap = 1

@@ -1,20 +1,20 @@
 #!mainFile "../../dev_main.opy"
 
 
-# rule "[roadhog/hook.opy]: Move hooked enemies closer":
-#     @Event playerDealtDamage
-#     @Hero roadhog
-#     @Condition eventPlayer.isUsingAbility1()
+rule "[roadhog/hook.opy]: Move hooked enemies closer":
+    @Event playerDealtDamage
+    @Hero roadhog
+    @Condition eventPlayer.isUsingAbility1()
 
-#     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
-#     if distance(victim, attacker) <= OW2_ROADHOG_HOOK_PROXIMITY + 1:
-#         victim.teleport(
-#             raycast(
-#                 victim.getPosition(), 
-#                 victim.getPosition() + (OW2_ROADHOG_HOOK_PROXIMITY - ROADHOG_HOOK_PROXIMITY)*directionTowards(victim, attacker), 
-#                 null, 
-#                 null, 
-#                 false).getHitPosition())
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
+    if distance(victim, attacker) <= OW2_ROADHOG_HOOK_PROXIMITY + 1:
+        victim.teleport(
+            raycast(
+                victim.getPosition(), 
+                victim.getPosition() + (OW2_ROADHOG_HOOK_PROXIMITY - ROADHOG_HOOK_PROXIMITY)*directionTowards(victim, attacker), 
+                null, 
+                null, 
+                false).getHitPosition())
 
 
 rule "[roadhog/hook.opy]: OW1 hook damage":

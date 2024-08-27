@@ -131,7 +131,6 @@ rule "[doomfist/uppercut.opy]: Damage uppercut victims + vfx + uppercut knockbac
     eventPlayer.startForcingThrottle(0, 0, 0, 0, 0, 0) # Lose movement control
     eventPlayer.applyImpulse(Vector.UP, 13.5, Relativity.TO_PLAYER, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
     eventPlayer.applyImpulse(getForwardDirection(eventPlayer._uppercut_attacker), 8.5, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
-    eventPlayer.setStatusEffect(null, Status.STUNNED, 3)
     wait(DOOMFIST_RISING_UPPERCUT_AIR_LOCK_TIME)
     eventPlayer.stopForcingThrottle() # Regain movement control
 
