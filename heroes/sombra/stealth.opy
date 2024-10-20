@@ -11,23 +11,6 @@ subroutine enterStealth
 subroutine exitStealth
 subroutine showStealthHud
 
-
-rule "[sombra/stealth.opy]: Remove Stealth passive":
-    @Event eachPlayer
-    @Hero sombra
-    @Condition not eventPlayer._is_using_stealth
-    @Condition not eventPlayer.isFiringPrimaryFire()
-    @Condition not eventPlayer.isFiringSecondaryFire()
-    @Condition not eventPlayer.isMeleeing()
-
-    do:
-        damage(eventPlayer, null, MIN_DAMAGE)
-        wait(cosDeg(1), Wait.ABORT_WHEN_FALSE) # some irrational value
-        # explanation: since stealth passive activates every 3.5 seconds
-        # damage must be applied in a way that never synchronizes with passive stealth activation
-    while RULE_CONDITION:
-
-
 rule "[sombra/stealth.opy]: Bind Ability 1 to stealth":
     @Event eachPlayer
     @Hero sombra
@@ -90,8 +73,6 @@ def exitStealth():
 
     stopChasingVariable(eventPlayer.stealth_timer)
 
-    damage(eventPlayer, null, 0.01)
-    heal(eventPlayer, null, 0.01)
     eventPlayer.setSecondaryFireEnabled(true) # Enable hacking after exiting invis
     eventPlayer.setInvisibility(Invis.NONE)
     eventPlayer.setMoveSpeed(100)
