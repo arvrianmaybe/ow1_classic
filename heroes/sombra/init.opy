@@ -4,7 +4,7 @@
 #!include "heroes/sombra/hack.opy"
 #!include "heroes/sombra/stealth.opy"
 #!include "heroes/sombra/translocator.opy"
-#!include "heroes/sombra/opportunist.opy"
+## !include "heroes/sombra/opportunist.opy"
 
 rule "[sombra/init.opy]: Initialize Sombra":
     @Event eachPlayer
